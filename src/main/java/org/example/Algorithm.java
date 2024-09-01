@@ -1,7 +1,5 @@
 package org.example;
 
-import jdk.jfr.Unsigned;
-
 import java.util.*;
 import java.util.regex.Pattern;
 
@@ -2614,18 +2612,305 @@ public class Algorithm {
         int maxUsers = maxUsers(channels, D);
         System.out.println("最多可以为多少用户传输数据: " + maxUsers);
     }
+
+    /*推荐多样性需要从多个列表中选择元素，一次性要返回N屏数据（窗口数量），每屏展示K个元素（窗口大小），选择策略：
+            1. 各个列表元素需要做穿插处理，即先从第一个列表中为每屏选择一个元素，再从第二个列表中为每屏选择一个元素，依次类推
+2. 每个列表的元素尽量均分为N份，如果不够N个，也要全部分配完，参考样例图：
+            （1）从第一个列表中选择4条0 1 2 3，分别放到4个窗口中
+（2）从第二个列表中选择4条10 11 12 13，分别放到4个窗口中
+（3）从第三个列表中选择4条20 21 22 23，分别放到4个窗口中
+（4）再从第一个列表中选择4条4 5 6 7，分别放到4个窗口中
+...
+        （5）再从第一个列表中选择，由于数量不足4条，取剩下的2条，放到窗口1和窗口2
+（6）再从第二个列表中选择，由于数量不足4条并且总的元素数达到窗口要求，取18 19放到窗口3和窗口4
+
+*/
+    public static List<List<Integer>> selectElements(List<List<Integer>> lists, int N, int K) {
+        // 初始化窗口数组，每个窗口是一个列表
+        List<List<Integer>> windows = new ArrayList<>();
+        for (int i = 0; i < N; i++) {
+            windows.add(new ArrayList<>());
+        }
+
+        // 循环处理每个列表中的元素
+        boolean elementsRemaining = true;
+        while (elementsRemaining) {
+            elementsRemaining = false;
+            for (List<Integer> list : lists) {
+                int count = 0;
+                while (!list.isEmpty() && count < N) {
+                    windows.get(count).add(list.remove(0));
+                    count++;
+                }
+                if (!list.isEmpty()) {
+                    elementsRemaining = true;
+                }
+            }
+        }
+
+        // 检查每个窗口是否达到K个元素，如果不足，填充空值或根据需要补充逻辑
+        for (List<Integer> window : windows) {
+            while (window.size() < K) {
+                // 根据具体业务逻辑，可以选择填充特殊值，或者根据其他策略处理
+                window.add(null); // 这里使用null占位
+            }
+        }
+
+        return windows;
+    }
     private static void Test43() {
+        // 示例输入
+        List<List<Integer>> lists = new ArrayList<>();
+        lists.add(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7));
+        lists.add(Arrays.asList(10, 11, 12, 13, 18, 19));
+        lists.add(Arrays.asList(20, 21, 22, 23));
+
+        int N = 4; // 窗口数量
+        int K = 2; // 每个窗口展示的元素数量
+
+        List<List<Integer>> result = selectElements(lists, N, K);
+
+        // 输出结果
+        for (int i = 0; i < result.size(); i++) {
+            System.out.println("Window " + (i + 1) + ": " + result.get(i));
+        }
+    }
+
+    /*1.老李是货运公司承运人，老李的货车额定载货重量为wt
+2.现有两种货物，货物A单件重量为wa，单件运费利润为pa，货物B单件重量为wb，单件运费利润为pb
+3.老李每次发车时载货总重量刚好为货车额定载货重量wt，车上必须同时有货物A和货物B，货物A、B不可切割
+4.老李单车次满载运输可获得的最高利润是多少*/
+
+    public static int maxProfit(int wt, int wa, int pa, int wb, int pb) {
+        int maxProfit = 0;
+
+        // 枚举货物A的数量
+        for (int x = 1; x * wa < wt; x++) {
+            // 计算剩余重量可以容纳的货物B的数量
+            int remainingWeight = wt - x * wa;
+            if (remainingWeight > 0 && remainingWeight % wb == 0) {
+                int y = remainingWeight / wb;
+                // 计算利润
+                int currentProfit = x * pa + y * pb;
+                // 更新最大利润
+                maxProfit = Math.max(maxProfit, currentProfit);
+            }
+        }
+
+        return maxProfit;
     }
     private static void Test44() {
+        int wt = 100; // 货车额定载重量
+        int wa = 10;  // 货物A的重量
+        int pa = 5;   // 货物A的利润
+        int wb = 20;  // 货物B的重量
+        int pb = 10;  // 货物B的利润
+
+        int maxProfit = maxProfit(wt, wa, pa, wb, pb);
+        System.out.println("单车次满载运输可获得的最高利润为: " + maxProfit);
+    }
+
+    /*一根X米长的树木，伐木工切割成不同长度的木材后进行交易，
+    交易价格为每根木头长度的乘积。规定切割后的每根木头长度都为正整数；
+    也可以不切割，直接拿整根树木进行交易。请问伐木工如何尽量少的切割，才能使收益最大化？*/
+    public static int maxProfit(int X) {
+        int[] dp = new int[X + 1];
+
+        // 初始化
+        for (int i = 1; i <= X; i++) {
+            dp[i] = i; // 不切割的情况
+        }
+
+        // 动态规划求解
+        for (int i = 2; i <= X; i++) {
+            for (int j = 1; j <= i / 2; j++) {
+                dp[i] = Math.max(dp[i], dp[j] * dp[i - j]);
+            }
+        }
+
+        return dp[X];
     }
     private static void Test45() {
+        int X = 10; // 树木长度
+        int maxProfit = maxProfit(X);
+        System.out.println("最大收益为: " + maxProfit);
+    }
+
+    /*现有两组服务器A和B，每组有多个算力不同的CPU，
+    其中A[i]是A组第i个CPU的运算能力，B[i]是B组第i个CPU的运算能力。
+    一组服务器的总算力是各CPU的算力之和。为了让两组服务器的算力相等，
+    允许从每组各选出一个CPU进行一次交换，求两组服务器中，用于交换的CPU的算力，
+    并且要求从A组服务器中选出的CPU，算力尽可能小。*/
+    public static int[] findCPUsToSwap(int[] A, int[] B) {
+        int sumA = 0, sumB = 0;
+        for (int a : A) sumA += a;
+        for (int b : B) sumB += b;
+
+        int target = (sumA - sumB) / 2;
+
+        Set<Integer> setB = new HashSet<>();
+        for (int b : B) {
+            setB.add(b);
+        }
+
+        for (int a : A) {
+            int b = a - target;
+            if (setB.contains(b)) {
+                return new int[]{a, b};
+            }
+        }
+
+        return new int[]{-1, -1}; // No valid swap found
     }
     private static void Test46() {
+        int[] A = {1, 3, 5, 7};
+        int[] B = {2, 4, 6, 8};
+
+        int[] result = findCPUsToSwap(A, B);
+        if (result[0] != -1) {
+            System.out.println("Swap A: " + result[0] + " with B: " + result[1]);
+        } else {
+            System.out.println("No valid swap found.");
+        }
     }
+
+    /*M（1<=M <=20）辆车需要在一条不能超车的单行道到达终点，
+    起点到终点的距离为N（1<=N<=400）。速度快的车追上前车后，只能以前车的速度继续行驶，求最后一车辆到达目的地花费的时间。
+    注：每辆车固定间隔1小时出发，比如第一辆车0时出发，第二辆车1时出发，依次类推*/
     private static void Test47() {
+        Scanner scanner = new Scanner(System.in);
+        int M = scanner.nextInt(); // 车的数量
+        int N = scanner.nextInt(); // 终点距离
+        int[] speeds = new int[M]; // 每辆车的速度
+        for (int i = 0; i < M; i++) {
+            speeds[i] = scanner.nextInt();
+        }
+
+        // 到达终点所需时间的数组
+        double[] arrivalTimes = new double[M];
+        for (int i = 0; i < M; i++) {
+            double time = N / (double) speeds[i];  // 计算每辆车如果没有阻碍，所需的时间
+            arrivalTimes[i] = i + time;  // 出发时间 + 无阻碍行驶时间
+            if (i > 0 && arrivalTimes[i] < arrivalTimes[i - 1]) {
+                arrivalTimes[i] = arrivalTimes[i - 1];  // 如果追上了前车，就以前车的时间到达
+            }
+        }
+
+        // 最后一辆车的到达时间即为答案
+        System.out.printf("%.6f\n", arrivalTimes[M - 1]);
+    }
+
+    /*小明在玩一个游戏，游戏规则如下：
+    在游戏开始前，小明站在坐标轴原点处（坐标值为0）。
+    给定一组指令和一个幸运数，每个指令都是一个整数，小明按照指定的要求前进或者后退指定的步数。前进代表朝坐标轴的正方向走，后退代表朝坐标轴的负方向走。
+    幸运数为一个整数，如果某个指令正好和幸运数相等，则小明行进步数加1。
+
+    例如：
+    幸运数为3，指令为[2,3,0,-5]
+    指令为2，表示前进2步；
+    指令为3，正好和幸运数相等，前进3+1=4步；
+    指令为0，表示原地不动，既不前进，也不后退。
+    指令为-5，表示后退5步；
+
+    请你计算小明在整个游戏过程中，小明所处的最大坐标值。*/
+    public static int getMaxPosition(int luckyNumber, int[] instructions) {
+        int position = 0; // 当前坐标
+        int maxPosition = 0; // 最大坐标
+
+        for (int instruction : instructions) {
+            int steps = instruction;
+
+            // 如果指令等于幸运数，步数+1
+            if (instruction == luckyNumber) {
+                steps += 1;
+            }
+
+            // 更新当前位置
+            position += steps;
+
+            // 更新最大坐标值
+            if (position > maxPosition) {
+                maxPosition = position;
+            }
+        }
+
+        return maxPosition;
+    }
+
+    private static void Test48() {
+        int luckyNumber = 3; // 幸运数
+        int[] instructions = {2, 3, 0, -5}; // 指令数组
+
+        System.out.println(getMaxPosition(luckyNumber, instructions));
+    }
+
+    /*现有N个任务需要处理，同一时间只能处理一个任务，处理每个任务所需要的时间固定为1。
+    每个任务都有最晚处理时间限制和积分值，在最晚处理时间点之前处理完成任务才可获得对应的积分奖励。
+    可用于处理任务的时间有限，请问在有限的时间内，可获得的最多积分。*/
+    static class Task {
+        int deadline;
+        int score;
+
+        public Task(int deadline, int score) {
+            this.deadline = deadline;
+            this.score = score;
+        }
+    }
+    public static int maxScore(int[] deadlines, int[] scores, int totalTime) {
+        int n = deadlines.length;
+        List<Task> tasks = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+            tasks.add(new Task(deadlines[i], scores[i]));
+        }
+
+        // 按任务最晚处理时间排序
+        tasks.sort((a, b) -> a.deadline - b.deadline);
+
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a, b) -> b - a);
+        int currentTime = 0;
+        int totalScore = 0;
+
+        for (Task task : tasks) {
+            if (currentTime < task.deadline && currentTime < totalTime) {
+                maxHeap.offer(task.score);
+                totalScore += task.score;
+                currentTime++;
+            } else if (!maxHeap.isEmpty() && task.score > maxHeap.peek()) {
+                totalScore += task.score - maxHeap.poll();
+                maxHeap.offer(task.score);
+            }
+        }
+
+        return totalScore;
+    }
+
+    private static void Test49() {
+        int[] deadlines = {2, 1, 2, 1, 3};
+        int[] scores = {100, 50, 200, 150, 300};
+        int totalTime = 3; // 可用的处理时间
+
+        System.out.println("最大可获得积分: " + maxScore(deadlines, scores, totalTime));
+    }
+
+    /*定义构造三叉搜索树规则如下：
+    每个节点都存有一个数，当插入一个新的数时，从根节点向下寻找，直到找到一个合适的空节点插入。
+    查找的规则是：
+            1. 如果数小于节点的数减去500，则将数插入节点的左子树
+        2. 如果数大于节点的数加上500，则将数插入节点的右子树
+        3. 否则，将数插入节点的中子树
+    给你一系列数，请按以上规则，按顺序将数插入树中，构建出一棵三叉搜索树，最后输出树的高度。
+*/
+
+    private static void Test50() {
+    }private static void Test51() {
+    }private static void Test52() {
+    }private static void Test53() {
+    }private static void Test54() {
+    }private static void Test55() {
     }
 
     public static void main(String[] args) {
-        Test38();
+        Test45();
     }
 }
