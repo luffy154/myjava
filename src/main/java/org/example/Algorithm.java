@@ -1561,6 +1561,7 @@ public class Algorithm {
         path.remove(path.size() - 1);
         return false;
     }
+
     private static void Test24() {
         int[][] book = {
                 {0, 0, 2},
@@ -1640,9 +1641,9 @@ public class Algorithm {
         String fileContent = "\""
                 + "COMMAND A \"Say \\\"hello\\\"\";"
                 + "COMMAND B;"
-                +"-- this is a comment\r\n"
-                +"COMMAND C;"
-                +"\"";
+                + "-- this is a comment\r\n"
+                + "COMMAND C;"
+                + "\"";
         System.out.println(fileContent);
         int count = countValidStatements(fileContent);
         System.out.println("Number of valid statements: " + count);
@@ -1716,6 +1717,7 @@ public class Algorithm {
 
         return true;
     }
+
     private static void Test26() {
         int number = 217; // 输入一个32位正整数
         int[] factors = factorize(number);
@@ -1781,16 +1783,17 @@ public class Algorithm {
         }
     }
 
-   /* 快递公司每日早晨，给每位快递员推送需要送到客户手中的快递以及路线信息，快递员自己又查找了一些客户与客户之间的路线距离信息，请你依据这些信息，给快递员设计一条最短路径，告诉他最短路径的距离。
+    /* 快递公司每日早晨，给每位快递员推送需要送到客户手中的快递以及路线信息，快递员自己又查找了一些客户与客户之间的路线距离信息，请你依据这些信息，给快递员设计一条最短路径，告诉他最短路径的距离。
 
-    注意：
+     注意：
 
-            1.     不限制快递包裹送到客户手中的顺序，但必须保证都送到客户手中
+             1.     不限制快递包裹送到客户手中的顺序，但必须保证都送到客户手中
 
-2.     用例保证一定存在投递站到每位客户之间的路线，但不保证客户与客户之间有路线，客户位置及投递站均允许多次经过
+ 2.     用例保证一定存在投递站到每位客户之间的路线，但不保证客户与客户之间有路线，客户位置及投递站均允许多次经过
 
-3.     所有快递送完后，快递员需回到投递站*/
+ 3.     所有快递送完后，快递员需回到投递站*/
     private static final int INF = Integer.MAX_VALUE / 2;
+
     // TSP 状态压缩 + 动态规划
     public static int tsp(int[][] dist, int n) {
         int[][] dp = new int[1 << n][n];
@@ -1949,6 +1952,7 @@ public class Algorithm {
 
         return resultSum;
     }
+
     private static void Test30() {
         int[] array1 = {1, 7, 11};
         int[] array2 = {2, 4, 6};
@@ -1986,6 +1990,7 @@ public class Algorithm {
 
         return area;
     }
+
     private static void Test39() {
         // 终点E
         int E = 10;
@@ -2036,6 +2041,7 @@ public class Algorithm {
             return "Start: " + bestStart + ", End: " + bestEnd;
         }
     }
+
     private static void Test31() {
         int[] failedRates = {10, 20, 30, 40, 50, 60, 70};
         int minAverageLost = 30;
@@ -2078,6 +2084,7 @@ public class Algorithm {
             current.deleteCharAt(current.length() - 1);
         }
     }
+
     private static void Test32() {
         String chars = "abc";
         int N = 3;
@@ -2092,7 +2099,7 @@ public class Algorithm {
     (0, 0)到(B, B)的距离为 1个水平边 + 1个垂直边 + 1个斜边 = 3。
     根据定义可知，原点到终点的最短距离路径最短距离为9：
     */
-    public static int shortestDistance(String A, String B,int m,int n) {
+    public static int shortestDistance(String A, String B, int m, int n) {
 
         // Initialize DP table
         int[][] dp = new int[m + 1][n + 1];
@@ -2113,10 +2120,11 @@ public class Algorithm {
 
         return dp[m][n];
     }
+
     private static void Test33() {
         String A = "ABCABBA";
         String B = "CBABAC";
-        System.out.println("Shortest distance: " + shortestDistance(A, B,2,6));
+        System.out.println("Shortest distance: " + shortestDistance(A, B, 2, 6));
     }
 
     /*1.众数是指一组数据中出现次数量多的那个数，众数可以是多个
@@ -2159,6 +2167,7 @@ public class Algorithm {
             return (list.get(size / 2 - 1) + list.get(size / 2)) / 2.0;
         }
     }
+
     private static void Test34() {
         int[] array = {1, 2, 2, 3, 3, 4}; // 示例数组
 
@@ -2184,7 +2193,7 @@ public class Algorithm {
     public static int minimumCompletionTime(int N, Integer[] demands) {
 
         // Step 1: Sort demands in descending order
-        Integer[] sortedDemands = Arrays.copyOf(demands,demands.length);
+        Integer[] sortedDemands = Arrays.copyOf(demands, demands.length);
         Arrays.sort(sortedDemands, Collections.reverseOrder());
 
         // Step 2: Use a min-heap to track the current load of each developer
@@ -2206,7 +2215,7 @@ public class Algorithm {
 
     private static void Test35() {
         int N = 3;  // Number of developers
-        Integer[] demands = {8, 5, 7, 6, 3,13,16};  // Workload for each demand
+        Integer[] demands = {8, 5, 7, 6, 3, 13, 16};  // Workload for each demand
 
         int minCompletionTime = minimumCompletionTime(N, demands);
         System.out.println("Minimum Completion Time: " + minCompletionTime);
@@ -2338,6 +2347,7 @@ public class Algorithm {
 
         return result;
     }
+
     private static void Test36() {
         String s = "ilovechina";
         List<String> dictionary = Arrays.asList("i", "love", "china", "lovechina", "ilove");
@@ -2434,6 +2444,7 @@ public class Algorithm {
 
         return minWidth == Integer.MAX_VALUE ? -1 : minWidth; // Return -1 if no valid submatrix is found
     }
+
     private static void Test38() {
         int[][] matrix = {
                 {1, 2, 3, 4},
@@ -2448,22 +2459,22 @@ public class Algorithm {
         System.out.println("Minimum width of the submatrix: " + minWidth);
     }
 
-   /* 为了充分发挥GPU算力，需要尽可能多的将任务交给GPU执行，
-   现在有一个任务数组，数组元素表示在这1秒内新增的任务个数且每秒都有新增任务，
-   假设GPU最多一次执行n个任务，一次执行耗时1秒，在保证GPU不空闲情况下，最少需要多长时间执行完成*/
-   public static int calculateMinimumTime(int[] taskArray, int n) {
-       // Calculate the total number of tasks
-       int totalTasks = 0;
-       for (int tasks : taskArray) {
-           totalTasks += tasks;
-       }
+    /* 为了充分发挥GPU算力，需要尽可能多的将任务交给GPU执行，
+    现在有一个任务数组，数组元素表示在这1秒内新增的任务个数且每秒都有新增任务，
+    假设GPU最多一次执行n个任务，一次执行耗时1秒，在保证GPU不空闲情况下，最少需要多长时间执行完成*/
+    public static int calculateMinimumTime(int[] taskArray, int n) {
+        // Calculate the total number of tasks
+        int totalTasks = 0;
+        for (int tasks : taskArray) {
+            totalTasks += tasks;
+        }
 
-       // Calculate the minimum time required
-       // Use ceiling division: (totalTasks + n - 1) / n
-       int minTime = (totalTasks + n - 1) / n;
+        // Calculate the minimum time required
+        // Use ceiling division: (totalTasks + n - 1) / n
+        int minTime = (totalTasks + n - 1) / n;
 
-       return minTime;
-   }
+        return minTime;
+    }
 
     /*n个学生排成一排，学生编号分别是1到n，n为3的整倍数。老师随机抽签决定将所有学生分成m个3人的小组，n=3*m
     为了便于同组学生交流，老师决定将小组成员安排到一起，也就是同组成员彼此相连，同组任意两个成员之间无其它组的成员。
@@ -2553,6 +2564,7 @@ public class Algorithm {
 
         return maxProfit == Integer.MIN_VALUE ? 0 : maxProfit;
     }
+
     private static void Test41() {
         int N = 5;  // 城市数量
         int T = 10; // 必须在T天内赶到
@@ -2658,6 +2670,7 @@ public class Algorithm {
 
         return windows;
     }
+
     private static void Test43() {
         // 示例输入
         List<List<Integer>> lists = new ArrayList<>();
@@ -2699,6 +2712,7 @@ public class Algorithm {
 
         return maxProfit;
     }
+
     private static void Test44() {
         int wt = 100; // 货车额定载重量
         int wa = 10;  // 货物A的重量
@@ -2730,6 +2744,7 @@ public class Algorithm {
 
         return dp[X];
     }
+
     private static void Test45() {
         int X = 10; // 树木长度
         int maxProfit = maxProfit(X);
@@ -2762,6 +2777,7 @@ public class Algorithm {
 
         return new int[]{-1, -1}; // No valid swap found
     }
+
     private static void Test46() {
         int[] A = {1, 3, 5, 7};
         int[] B = {2, 4, 6, 8};
@@ -2856,6 +2872,7 @@ public class Algorithm {
             this.score = score;
         }
     }
+
     public static int maxScore(int[] deadlines, int[] scores, int totalTime) {
         int n = deadlines.length;
         List<Task> tasks = new ArrayList<>();
@@ -2893,24 +2910,1169 @@ public class Algorithm {
         System.out.println("最大可获得积分: " + maxScore(deadlines, scores, totalTime));
     }
 
-    /*定义构造三叉搜索树规则如下：
-    每个节点都存有一个数，当插入一个新的数时，从根节点向下寻找，直到找到一个合适的空节点插入。
-    查找的规则是：
-            1. 如果数小于节点的数减去500，则将数插入节点的左子树
-        2. 如果数大于节点的数加上500，则将数插入节点的右子树
-        3. 否则，将数插入节点的中子树
-    给你一系列数，请按以上规则，按顺序将数插入树中，构建出一棵三叉搜索树，最后输出树的高度。
-*/
+    /*黑白图像常采用灰度图的方式存储，即图像的每个像素填充一个灰阶值，256阶灰度图是一个灰阶值取值范围为0-255的灰阶矩阵，0表示全黑、255表示全白，范围内的其他值表示不同的灰度，比如下面的图像及其对应的灰阶矩阵：
 
+    但在计算机中实际存储时，会使用压缩算法，其中一种压缩格式和描述如下：
+            10 10 255 34 0 1 255 8 0 3 255 6 0 5 255 4 0 7 255 2 0 9 255 21
+            1、所有数值以空格分隔
+2、前两个数分别表示矩阵的行数和列数
+3、从第三个数开始，每两个数一组，每组第一个数是灰阶值，第二个数表示该灰阶值从左到右，从上到下（可理解为将二维数组按行存储在一维矩阵中）的连续像素个数。比如题目所述例子，“255 34”表示有连续34个像素的灰阶值是255。
+    如此，图像软件在打开此格式灰度图的时候，就可以根据此算法从压缩数据恢复出原始灰度图矩阵。
+    请从输入的压缩数恢复灰度图原始矩阵，并返回指定像素的灰阶值。*/
     private static void Test50() {
-    }private static void Test51() {
-    }private static void Test52() {
-    }private static void Test53() {
-    }private static void Test54() {
-    }private static void Test55() {
+        Scanner scanner = new Scanner(System.in);
+        // 输入的第一行数据
+        String input = scanner.nextLine();
+        String[] data = input.split(" ");
+
+        // 提取行数和列数
+        int rows = Integer.parseInt(data[0]);
+        int cols = Integer.parseInt(data[1]);
+
+        // 初始化灰度图矩阵
+        int[][] image = new int[rows][cols];
+
+        // 填充灰度图矩阵
+        int index = 2;  // 从第三个数开始
+        int pixelIndex = 0;
+        for (int i = 2; i < data.length; i += 2) {
+            int grayValue = Integer.parseInt(data[i]);
+            int count = Integer.parseInt(data[i + 1]);
+
+            for (int j = 0; j < count; j++) {
+                int row = pixelIndex / cols;
+                int col = pixelIndex % cols;
+                image[row][col] = grayValue;
+                pixelIndex++;
+            }
+        }
+
+        for (int i = 0; i < image.length; i++) {
+            for (int j = 0; j < image[i].length; j++) {
+                System.out.print(image[i][j] + " ");
+            }
+            System.out.println("\r\n");
+        }
+        System.out.println();
+
+        // 输入要查询的像素坐标
+        int queryRow = scanner.nextInt();
+        int queryCol = scanner.nextInt();
+
+        // 返回指定像素的灰阶值
+        System.out.println(image[queryRow][queryCol]);
+    }
+
+    /*XX市机场停放了多架飞机，每架飞机都有自己的航班号CA3385，CZ6678，SC6508等，航班号的前2个大写字母(或数字）代表航空公司的缩写，后面4个数字代表航班信息。但是XX市机场只有一条起飞用跑道，调度人员需要安排目前停留在机场的航班有序起飞。为保障航班的有序起飞，调度员首先按照航空公司的缩写（航班号前2个字母）对所有航班进行排序，同一航空公司的航班再按照航班号的后4个数字进行排序最终获得安排好的航班的起飞顺序。请编写一段代码根据输入的航班号信息帮助调度员输出航班的起飞顺序。
+            说明：
+            1、航空公司缩写排序按照从特殊符号$ & *, 0~9，A~Z排序；*/
+    private static class FlightComparator implements Comparator<String> {
+        @Override
+        public int compare(String flight1, String flight2) {
+            // 获取航班号的前两个字符(航空公司缩写)
+            String company1 = flight1.substring(0, 2);
+            String company2 = flight2.substring(0, 2);
+
+            // 比较航空公司缩写
+            int companyComparison = compareCompanyCodes(company1, company2);
+            if (companyComparison != 0) {
+                return companyComparison;
+            }
+
+            // 航空公司缩写相同，比较后四个数字（航班号）
+            int number1 = Integer.parseInt(flight1.substring(2));
+            int number2 = Integer.parseInt(flight2.substring(2));
+
+            return Integer.compare(number1, number2);
+        }
+
+        // 自定义航空公司代码的排序规则
+        private int compareCompanyCodes(String code1, String code2) {
+            for (int i = 0; i < 2; i++) {
+                char ch1 = code1.charAt(i);
+                char ch2 = code2.charAt(i);
+                int rank1 = getRank(ch1);
+                int rank2 = getRank(ch2);
+
+                if (rank1 != rank2) {
+                    return Integer.compare(rank1, rank2);
+                }
+            }
+            return 0;
+        }
+
+        // 获取字符的排序权重
+        private int getRank(char ch) {
+            if (ch == '$') return 0;
+            if (ch == '&') return 1;
+            if (ch == '*') return 2;
+            if (Character.isDigit(ch)) return ch - '0' + 3; // 数字的排序权重 3 ~ 12
+            if (Character.isUpperCase(ch)) return ch - 'A' + 13; // 大写字母的排序权重 13 ~ 38
+            return Integer.MAX_VALUE; // 非法字符，默认排序到最后
+        }
+    }
+
+    private static void Test51() {
+        List<String> flights = new ArrayList<>();
+        flights.add("CA3385");
+        flights.add("CZ6678");
+        flights.add("SC6508");
+        flights.add("AA1234");
+        flights.add("9C9999");
+        flights.add("$B5678");
+        flights.add("&A1111");
+        flights.add("CA1111");
+        flights.add("*B2222");
+
+        // 对航班号进行排序
+        Collections.sort(flights, new FlightComparator());
+
+        // 输出排序后的航班号
+        for (String flight : flights) {
+            System.out.println(flight);
+        }
+    }
+
+    /*机器人搬砖，一共有N堆砖存放在N个不同的仓库中，第i堆砖中有bricks[i]块砖头，要求在8小时内搬完。机器人每小时能搬砖的数量取决于有多少能量格，机器人一个小时中只能在一个仓库中搬砖，机器人的能量格每小时补充一次且能量格只在这一个小时有效，为使得机器人损耗最小化尽量减小每次补充的能量格数。
+    为了保障在8小时内能完成搬砖任务，请计算每小时给机器人充能的最小能量格数。
+    备注：
+            1、无需考虑机器人补充能量格的耗时；
+            2、无需考虑机器人搬砖的耗时；
+            3、机器人每小时补充能量格只在这一个小时中有效；*/
+
+    // 判断当前能量格数x是否足够让机器人在8小时内搬完所有砖块
+    private static boolean canFinish(int[] bricks, int x) {
+        int hoursNeeded = 0;
+        for (int brickCount : bricks) {
+            // 计算搬完当前仓库的砖头需要多少小时
+            hoursNeeded += Math.ceil((double) brickCount / x);
+        }
+        return hoursNeeded <= 8;
+    }
+
+    public static int minEnergyGrids(int[] bricks) {
+        int low = 1;  // 最小能量格数
+        int high = 0;  // 最大能量格数
+        for (int brickCount : bricks) {
+            high = Math.max(high, brickCount);
+        }
+
+        // 二分查找
+        while (low < high) {
+            int mid = low + (high - low) / 2;
+            if (canFinish(bricks, mid)) {
+                high = mid;  // 尝试更小的能量格数
+            } else {
+                low = mid + 1;  // 增加能量格数
+            }
+        }
+
+        return low;
+    }
+
+    private static void Test52() {
+        int[] bricks = {3, 6, 7, 11};
+        System.out.println(minEnergyGrids(bricks));  // 输出可能的最小能量格数
+    }
+
+    /*幼儿园组织活动，老师布置了一个任务：每个小朋友去了解与自己同一个小区的小朋友还有几个。我们将这些数量汇总到数组garden中。
+    请根据这些小朋友给出的信息，计算小朋友至少有几个？*/
+    public static int minimumChildren(int[] garden) {
+        Map<Integer, Integer> countMap = new HashMap<>();
+        int totalChildren = 0;
+
+        // 统计每个 garden[i] 的出现次数
+        for (int i : garden) {
+            countMap.put(i, countMap.getOrDefault(i, 0) + 1);
+        }
+
+        // 计算最少的小朋友总数
+        for (Map.Entry<Integer, Integer> entry : countMap.entrySet()) {
+            int value = entry.getKey();
+            int count = entry.getValue();
+
+            // 每组至少有 value + 1 个小朋友
+            int groupSize = value + 1;
+
+            // 计算最少需要的组数
+            int groups = (int) Math.ceil((double) count / groupSize);
+            totalChildren += groups * groupSize;
+        }
+
+        return totalChildren;
+    }
+
+    /*“吃货”和“馋嘴”两人到披萨店点了一份铁盘（圆形）披萨，并嘱咐店员将披萨按放射状切成大小相同的偶数扇形小块。
+    但是粗心服务员将披萨切成了每块大小都完全不同奇数块，且肉眼能分辨出大小。
+    由于两人都想吃到最多的披萨，他们商量了一个他们认为公平的分法：从“吃货”开始，轮流取披萨。
+    除了第一块披萨可以任意选取以外，其他都必须从缺口开始选。
+    他俩选披萨的思路不同。“馋嘴”每次都会选最大块的披萨，而且“吃货”知道“馋嘴”的想法。
+    已知披萨小块的数量以及每块的大小，求“吃货”能分得的最大的披萨大小的总和。*/
+    public static int maxPizzaForChihuo(int[] sizes) {
+        int n = sizes.length;
+        int[][] dp = new int[n][n];  // dp[i][j] 表示“吃货”在 i 到 j 范围内能获得的最大披萨总和
+
+        // 初始化，只有一块披萨的情况下
+        for (int i = 0; i < n; i++) {
+            dp[i][i] = sizes[i];
+        }
+
+        // 计算所有长度范围内的 dp 值
+        for (int length = 2; length <= n; length++) {
+            for (int i = 0; i <= n - length; i++) {
+                int j = i + length - 1;
+                int takeLeft = sizes[i] + Math.min(dp[i + 2][j] > 0 ? dp[i + 2][j] : 0, dp[i + 1][j - 1] > 0 ? dp[i + 1][j - 1] : 0);
+                int takeRight = sizes[j] + Math.min(dp[i + 1][j - 1] > 0 ? dp[i + 1][j - 1] : 0, dp[i][j - 2] > 0 ? dp[i][j - 2] : 0);
+                dp[i][j] = Math.max(takeLeft, takeRight);
+            }
+        }
+
+        // 返回从整个披萨块中“吃货”能获得的最大总和
+        return dp[0][n - 1];
+    }
+
+    /*现代计算机系统中通常存在多级的存储设备，针对海量workload的优化的一种思路是将热点内存页优先放到快速存储层级，这就需要对内存页进行冷热标记。
+    一种典型的方案是基于内存页的访问频次进行标记，如果统计窗口内访问次数大于等于设定阈值，则认为是热内存页，否则是冷内存页。
+    对于统计窗口内跟踪到的访存序列和阈值，现在需要实现基于频次的冷热标记。内存页使用页框号作为标识。*/
+    public static Map<Integer, String> markHotColdPages(int[] accessSequence, int threshold) {
+        // 用于存储每个页框号的访问次数
+        Map<Integer, Integer> pageFrequency = new HashMap<>();
+        // 用于存储每个页框号的冷热标记
+        Map<Integer, String> pageHotColdStatus = new HashMap<>();
+
+        // 统计每个页框号的访问次数
+        for (int page : accessSequence) {
+            pageFrequency.put(page, pageFrequency.getOrDefault(page, 0) + 1);
+        }
+
+        // 根据阈值对页框号进行冷热标记
+        for (Map.Entry<Integer, Integer> entry : pageFrequency.entrySet()) {
+            int page = entry.getKey();
+            int frequency = entry.getValue();
+            if (frequency >= threshold) {
+                pageHotColdStatus.put(page, "Hot");
+            } else {
+                pageHotColdStatus.put(page, "Cold");
+            }
+        }
+
+        return pageHotColdStatus;
+    }
+
+    private static void Test53() {
+        // 示例访存序列
+        int[] accessSequence = {3, 5, 3, 8, 5, 3, 7, 8, 5, 8, 3, 5, 3};
+        // 设定阈值
+        int threshold = 3;
+
+        Map<Integer, String> result = markHotColdPages(accessSequence, threshold);
+
+        // 输出结果
+        for (Map.Entry<Integer, String> entry : result.entrySet()) {
+            System.out.println("Page Frame " + entry.getKey() + ": " + entry.getValue());
+        }
+    }
+
+    /*给定一个正整数n，如果能够分解为m(m > 1)个连续正整数之和，请输出所有分解中，m最小的分解。
+    如果给定整数无法分解为连续正整数，则输出字符串"N"。*/
+    public static String findSmallestConsecutiveSum(int n) {
+        for (int m = 2; m < Math.sqrt(2 * n); m++) {
+            int numerator = n - (m * (m - 1)) / 2;
+            if (numerator <= 0) break;
+            if (numerator % m == 0) {
+                int x = numerator / m;
+                StringBuilder result = new StringBuilder();
+                for (int i = 0; i < m; i++) {
+                    if (i > 0) result.append(" + ");
+                    result.append(x + i);
+                }
+                return result.toString();
+            }
+        }
+        return "N";
+    }
+
+    private static void Test54() {
+        int n = 15; // 输入的正整数
+        String result = findSmallestConsecutiveSum(n);
+        System.out.println(result); // 输出分解结果
+    }
+    /*疫情期间，小明隔离在家，百无聊赖，在纸上写数字玩。他发明了一种写法：
+    给出数字个数n和行数m（0 < n ≤ 999，0 < m ≤ 999），从左上角的1开始，按照顺时针螺旋向内写方式，依次写出2,3...n，最终形成一个m行矩阵。
+    小明对这个矩阵有些要求：
+            1.每行数字的个数一样多
+2.列的数量尽可能少
+3.填充数字时优先填充外部
+4.数字不够时，使用单个*号占位*/
+    public static String[][] generateSpiralMatrix(int n, int m) {
+        int cols = (int) Math.ceil((double) n / m); // 确定列数
+        String[][] matrix = new String[m][cols];    // 初始化矩阵
+
+        // 将矩阵初始化为 "*"
+        for (String[] row : matrix) {
+            Arrays.fill(row, "*");
+        }
+
+        int number = 1;
+        int left = 0, right = cols - 1, top = 0, bottom = m - 1;
+
+        while (number <= n) {
+            // 从左到右填充上边
+            for (int i = left; i <= right && number <= n; i++) {
+                matrix[top][i] = String.valueOf(number++);
+            }
+            top++;
+
+            // 从上到下填充右边
+            for (int i = top; i <= bottom && number <= n; i++) {
+                matrix[i][right] = String.valueOf(number++);
+            }
+            right--;
+
+            // 从右到左填充下边
+            for (int i = right; i >= left && number <= n; i--) {
+                matrix[bottom][i] = String.valueOf(number++);
+            }
+            bottom--;
+
+            // 从下到上填充左边
+            for (int i = bottom; i >= top && number <= n; i--) {
+                matrix[i][left] = String.valueOf(number++);
+            }
+            left++;
+        }
+
+        return matrix;
+    }
+    private static void Test55() {
+        int n = 20;  // 输入的数字个数
+        int m = 5;   // 输入的行数
+
+        String[][] result = generateSpiralMatrix(n, m);
+
+        // 输出矩阵
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < result[0].length; j++) {
+                System.out.print(result[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+    /*园区某部门举办了Family Day，邀请员工及其家属参加；将公司园区视为一个矩形，
+    起始园区设置在左上角，终点园区设置在右下角；家属参观园区时，
+    只能向右和向下园区前进；求从起始园区到终点园区会有多少条不同的参观路径；*/
+    public static int uniquePaths(int m, int n) {
+        int[][] dp = new int[m + 1][n + 1];
+
+        // 初始化第一行和第一列
+        for (int i = 0; i <= m; i++) {
+            dp[i][0] = 1;
+        }
+        for (int j = 0; j <= n; j++) {
+            dp[0][j] = 1;
+        }
+
+        // 填充动态规划表
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+            }
+        }
+
+        return dp[m][n];
+    }
+    private static void Test56() {
+        int m = 3; // 网格的行数
+        int n = 2; // 网格的列数
+        System.out.println("从起始园区到终点园区的路径数量是: " + uniquePaths(m, n));
+    }
+
+   /* 均衡串定义：字符串只包含两种字符，且两种字符的个数相同。
+    给定一个均衡字符串，请给出可分割成新的均衡子串的最大个数。
+    约定字符串中只包含大写的'X'和'Y'两种字符。*/
+   public static int maxBalancedSubstrings(String s) {
+       int balance = 0;
+       int count = 0;
+
+       for (int i = 0; i < s.length(); i++) {
+           if (s.charAt(i) == 'X') {
+               balance++;
+           } else if (s.charAt(i) == 'Y') {
+               balance--;
+           }
+
+           // 找到一个均衡子串
+           if (balance == 0) {
+               count++;
+           }
+       }
+
+       return count;
+   }
+    private static void Test57() {
+        String s = "XXYYXYXY";
+        System.out.println("可分割成均衡子串的最大个数是: " + maxBalancedSubstrings(s));
+    }
+
+    /*每个方块代表一个像素，每个像素用其行号和列号表示。
+
+    为简化处理，多段线的走向只能是水平、竖直、斜向45度。
+    上图中的多段线可以用下面的坐标串表示：(2, 8), (3, 7), (3, 6), (3, 5), (4, 4), (5, 3), (6, 2), (7, 3), (8, 4), (7, 5)。
+    但可以发现，这种表示不是最简的，其实只需要存储6个蓝色的关键点即可，它们是线段的起点、拐点、终点，而剩下4个点是冗余的。
+    现在，请根据输入的包含有冗余数据的多段线坐标列表，输出其最简化的结果。*/
+    public static List<int[]> simplifyPolyline(List<int[]> points) {
+        List<int[]> simplifiedPoints = new ArrayList<>();
+
+        if (points.size() < 2) {
+            return points;
+        }
+
+        simplifiedPoints.add(points.get(0));  // 起点
+
+        for (int i = 1; i < points.size() - 1; i++) {
+            int[] prev = points.get(i - 1);
+            int[] curr = points.get(i);
+            int[] next = points.get(i + 1);
+
+            // 计算方向
+            int dx1 = curr[0] - prev[0];
+            int dy1 = curr[1] - prev[1];
+            int dx2 = next[0] - curr[0];
+            int dy2 = next[1] - curr[1];
+
+            // 判断是否为拐点
+            if (dx1 != dx2 || dy1 != dy2) {
+                simplifiedPoints.add(curr);
+            }
+        }
+
+        simplifiedPoints.add(points.get(points.size() - 1));  // 终点
+
+        return simplifiedPoints;
+    }
+    private static void Test58() {
+        // 示例输入
+        List<int[]> points = new ArrayList<>();
+        points.add(new int[]{2, 8});
+        points.add(new int[]{3, 7});
+        points.add(new int[]{3, 6});
+        points.add(new int[]{3, 5});
+        points.add(new int[]{4, 4});
+        points.add(new int[]{5, 3});
+        points.add(new int[]{6, 2});
+        points.add(new int[]{7, 3});
+        points.add(new int[]{8, 4});
+        points.add(new int[]{7, 5});
+
+        // 简化坐标列表
+        List<int[]> simplifiedPoints = simplifyPolyline(points);
+
+        // 输出结果
+        for (int[] point : simplifiedPoints) {
+            System.out.println("(" + point[0] + ", " + point[1] + ")");
+        }
+    }
+    /*寿司店周年庆，正在举办优惠活动回馈新老客户。
+    寿司转盘上总共有n盘寿司，prices[i]是第i盘寿司的价格，如果客户选择了第i盘寿司，寿司店免费赠送客户距离第i盘寿司最近的下一盘寿司 j，前提是prices[j] < prices[i]，如果没有满足条件的 j，则不赠送寿司。
+    每个价格的寿司都可无限供应*/
+    public static int[] findDiscountedPrices(int[] prices) {
+        int n = prices.length;
+        int[] discountedPrices = new int[n];
+
+        // 栈用于存储索引
+        Stack<Integer> stack = new Stack<>();
+
+        // 从右向左遍历寿司转盘
+        for (int i = 0; i < n; i++) {
+            // 当栈非空且栈顶的寿司价格大于当前寿司的价格时
+            while (!stack.isEmpty() && prices[stack.peek()] > prices[i]) {
+                int index = stack.pop();
+                discountedPrices[index] = prices[index] - prices[i];
+            }
+            stack.push(i);
+        }
+
+        // 处理栈中剩余的寿司（这些寿司没有比它们价格更低的赠送寿司）
+        while (!stack.isEmpty()) {
+            int index = stack.pop();
+            discountedPrices[index] = prices[index];
+        }
+
+        return discountedPrices;
+    }
+    private static void Test59() {
+        int[] prices = {5, 3, 8, 6, 2, 7};
+        int[] discountedPrices = findDiscountedPrices(prices);
+
+        System.out.println("Original Prices: ");
+        for (int price : prices) {
+            System.out.print(price + " ");
+        }
+
+        System.out.println("\nDiscounted Prices: ");
+        for (int price : discountedPrices) {
+            System.out.print(price + " ");
+        }
+    }
+
+    /*给定用户密码输入流input，输入流中字符'<'表示退格，可以清除前一个输入的字符，请你编写程序，输出最终得到的密码字符，并判断密码是否满足如下的密码安全要求。
+    密码安全要求如下：
+            1.密码长度>=8;
+2.密码至少需要包含1个大写字母;
+3.密码至少需要包含1个小写字母;
+4.密码至少需要包含1个数字;
+5.密码至少需要包含1个字母和数字以外的非空白特殊字符
+
+    注意空串退格后仍然为空串，且用户输入的字符串不包含‘<’字符和空白字符。*/
+
+    public static String processInput(String input) {
+        StringBuilder password = new StringBuilder();
+
+        for (char c : input.toCharArray()) {
+            if (c == '<') {
+                if (password.length() > 0) {
+                    password.deleteCharAt(password.length() - 1);
+                }
+            } else {
+                password.append(c);
+            }
+        }
+
+        return password.toString();
+    }
+
+    public static boolean isPasswordSafe(String password) {
+        if (password.length() < 8) return false;
+
+        boolean hasUppercase = false;
+        boolean hasLowercase = false;
+        boolean hasDigit = false;
+        boolean hasSpecialChar = false;
+
+        for (char c : password.toCharArray()) {
+            if (Character.isUpperCase(c)) hasUppercase = true;
+            else if (Character.isLowerCase(c)) hasLowercase = true;
+            else if (Character.isDigit(c)) hasDigit = true;
+            else hasSpecialChar = true;
+        }
+
+        return hasUppercase && hasLowercase && hasDigit && hasSpecialChar;
+    }
+    private static void Test60() {
+        String input = "aBc1234<<5dEfg!";
+        String finalPassword = processInput(input);
+
+        System.out.println("Final Password: " + finalPassword);
+
+        if (isPasswordSafe(finalPassword)) {
+            System.out.println("Password is safe.");
+        } else {
+            System.out.println("Password is not safe.");
+        }
+    }
+    /*小华按照地图去寻宝，地图上被划分成 m 行和 n 列的方格，
+    横纵坐标范围分别是 [0, n−1]和[0, m-1]。
+    在横坐标和纵坐标的数位之和不大于k的方格中存在黄金（每个方格中仅存在一克黄金），
+    但横坐标和纵坐标之和大于k的方格存在危险不可进入。小华从入口(0,0)进入，
+    任何时候只能向左，右，上，下四个方向移动一格。请问小华最多能获得多少克黄金？*/
+
+    // 计算坐标的数位之和
+    public static int digitSum(int x) {
+        int sum = 0;
+        while (x > 0) {
+            sum += x % 10;
+            x /= 10;
+        }
+        return sum;
+    }
+
+    // DFS搜索有效的方格
+    public static int dfs(int x, int y, int m, int n, int k, boolean[][] visited) {
+        // 检查边界条件和数位和限制
+        if (x < 0 || x >= n || y < 0 || y >= m || visited[y][x] || (digitSum(x) + digitSum(y) > k)) {
+            return 0;
+        }
+
+        visited[y][x] = true; // 标记当前位置为已访问
+
+        // 从当前位置递归搜索相邻的四个方向
+        int count = 1;
+        count += dfs(x + 1, y, m, n, k, visited); // 向右
+        count += dfs(x - 1, y, m, n, k, visited); // 向左
+        count += dfs(x, y + 1, m, n, k, visited); // 向下
+        count += dfs(x, y - 1, m, n, k, visited); // 向上
+
+        return count;
+    }
+
+    // 主函数
+    public static int maxGold(int m, int n, int k) {
+        boolean[][] visited = new boolean[m][n]; // 标记矩阵，记录访问情况
+        return dfs(0, 0, m, n, k, visited); // 从(0,0)开始DFS搜索
+    }
+    private static void Test61() {
+        int m = 3;
+        int n = 3;
+        int k = 2;
+        System.out.println("Max gold collected: " + maxGold(m, n, k));
+    }
+
+    /*给定一个二叉树，每个节点上站着一个人，节点数字表示父节点到该节点传递悄悄话需要花费的时间。
+    初始时，根节点所在位置的人有一个悄悄话想要传递给其他人，求二叉树所有节点上的人都接收到悄悄话花费的时间。*/
+    // 计算每个节点的接收时间，并返回树中所有节点接收时间的最大值
+    public static int calculateWhisperTime(TreeNode root) {
+        Map<TreeNode, Integer> nodeTimeMap = new HashMap<>();
+        return dfs(root, nodeTimeMap);
+    }
+
+    private static int dfs(TreeNode node, Map<TreeNode, Integer> nodeTimeMap) {
+        if (node == null) {
+            return 0;
+        }
+
+        int leftTime = dfs(node.left, nodeTimeMap);
+        int rightTime = dfs(node.right, nodeTimeMap);
+
+        int maxChildTime = Math.max(leftTime, rightTime);
+        int totalTime = node.val + maxChildTime;
+
+        nodeTimeMap.put(node, totalTime);
+
+        return totalTime;
+    }
+    private static void Test62() {
+        // 构建二叉树
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(4);
+        root.left.right = new TreeNode(5);
+        root.right.left = new TreeNode(6);
+        root.right.right = new TreeNode(7);
+
+        // 计算并输出结果
+        int result = calculateWhisperTime(root);
+        System.out.println("Total time for all nodes to receive whisper: " + result);
+
+    }
+
+    /*在一个大型体育场内举办了一场大型活动，由于疫情防控的需要，
+    要求每位观众的必须间隔至少一个空位才允许落座。现在给出一排观众座位分布图，
+    座位中存在已落座的观众，请计算出，在不移动现有观众座位的情况下，最多还能坐下多少名观众。*/
+    public static int calculateMaxAdditionalSeats(String seats) {
+        int n = seats.length();
+        int count = 0;
+        int i = 0;
+
+        while (i < n) {
+            // Find the start of the empty seat section
+            if (seats.charAt(i) == '0') {
+                int start = i;
+                // Find the end of the empty seat section
+                while (i < n && seats.charAt(i) == '0') {
+                    i++;
+                }
+                int end = i - 1;
+
+                // Calculate number of seats we can add in this section
+                int length = end - start + 1;
+                // If length is greater than 0, we can place seats
+                if (length > 0) {
+                    // We need to account for the start and end seats being occupied
+                    // So the effective length is length - 2
+                    if (length >= 3) {
+                        count += (length - 1) / 2;
+                    }
+                }
+            } else {
+                i++;
+            }
+        }
+
+        return count;
+    }
+    private static void Test63() {
+        // Example seating arrangement
+        String seats = "0100101001"; // 0: empty, 1: occupied
+
+        // Calculate and print the maximum number of additional seats
+        int maxAdditionalSeats = calculateMaxAdditionalSeats(seats);
+        System.out.println("Maximum number of additional seats: " + maxAdditionalSeats);
+    }
+    /*有一辆汽车需要从m * n的地图的左上角（起点）开往地图的右下角（终点），去往每一个地区都需要消耗一定的油量，加油站可进行加油
+            请你计算汽车确保从起点到达终点时所需的最少初始油量
+    说明：
+            （1）智能汽车可以上、下、左、右四个方向移动
+（2）地图中的数字取值是0或-1或正整数：
+            -1：表示加油站，可以加满油，汽车的油箱容量最大为100；
+            0：表示这个地区是障碍物，汽车不能通过；
+    正整数：表示汽车走过这个地区的耗油量
+（3）如果汽车无论如何都无法到达终点，则返回-1*/
+    private static final int MAX_OIL = 100;
+    private static final int[][] DIRECTIONS = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}}; // 上、下、左、右
+
+    public static int minimumInitialOil(int[][] map) {
+        int m = map.length;
+        int n = map[0].length;
+
+        // 使用一个二维数组来记录每个位置的最小油量
+        int[][] minOil = new int[m][n];
+        for (int[] row : minOil) {
+            Arrays.fill(row, INF);
+        }
+
+        // BFS 队列，存储 (x, y, 当前油量)
+        Queue<int[]> queue = new LinkedList<>();
+        queue.offer(new int[]{0, 0, MAX_OIL});
+        minOil[0][0] = MAX_OIL;
+
+        while (!queue.isEmpty()) {
+            int[] current = queue.poll();
+            int x = current[0];
+            int y = current[1];
+            int oil = current[2];
+
+            // 如果到达终点，返回所需的初始油量
+            if (x == m - 1 && y == n - 1) {
+                return MAX_OIL - oil;
+            }
+
+            for (int[] dir : DIRECTIONS) {
+                int nx = x + dir[0];
+                int ny = y + dir[1];
+
+                if (nx >= 0 && ny >= 0 && nx < m && ny < n) {
+                    int cell = map[nx][ny];
+                    if (cell == 0) {
+                        continue; // 障碍物，不能通过
+                    }
+
+                    int newOil = (cell == -1) ? MAX_OIL : oil - cell; // 如果是加油站，油量加满
+
+                    if (newOil >= 0 && newOil > minOil[nx][ny]) {
+                        minOil[nx][ny] = newOil;
+                        queue.offer(new int[]{nx, ny, newOil});
+                    }
+                }
+            }
+        }
+
+        return -1; // 无法到达终点
+    }
+    private static void Test64() {
+        int[][] map = {
+                {1, 1, 1, 1, 1},
+                {1, 0, -1, 0, 1},
+                {1, 0, 1, 0, 1},
+                {1, 1, 1, 0, 1},
+                {1, -1, 1, 1, 1}
+        };
+
+        int result = minimumInitialOil(map);
+        System.out.println("Minimum initial oil required: " + result);
+    }
+    /*为了达到新冠疫情精准防控的需要，为了避免全员核酸检测带来的浪费，需要精准圈定可能被感染的人群。
+    现在根据传染病流调以及大数据分析，得到了每个人之间在时间、空间上是否存在轨迹的交叉。
+    现在给定一组确诊人员编号（X1, X2, X3, .... Xn）,在所有人当中，找出哪些人需要进行核酸检测，输出需要进行核酸检测的人数。（注意：确诊病例自身不需要再做核酸检测）
+    需要进行核酸检测的人，是病毒传播链条上的所有人员，即有可能通过确诊病例所能传播到的所有人。
+    例如：A是确诊病例，A和B有接触、B和C有接触、C和D有接触、D和E有接触，那么B\C\D\E都是需要进行核酸检测的人。*/
+// BFS 实现来查找所有需要核酸检测的人
+    public static Set<Integer> findAffectedPeople(Map<Integer, Set<Integer>> graph, Set<Integer> confirmedCases) {
+        Set<Integer> toTest = new HashSet<>();
+        Queue<Integer> queue = new LinkedList<>();
+        Set<Integer> visited = new HashSet<>();
+
+        for (int caseId : confirmedCases) {
+            queue.add(caseId);
+            visited.add(caseId);
+        }
+
+        while (!queue.isEmpty()) {
+            int current = queue.poll();
+            for (int neighbor : graph.getOrDefault(current, Collections.emptySet())) {
+                if (!visited.contains(neighbor)) {
+                    visited.add(neighbor);
+                    queue.add(neighbor);
+                    toTest.add(neighbor);
+                }
+            }
+        }
+
+        return toTest;
+    }
+
+    private static void Test65() {
+        // 构建示例图
+        Map<Integer, Set<Integer>> graph = new HashMap<>();
+
+        // 示例图的邻接列表
+        graph.put(1, new HashSet<>(Arrays.asList(2, 3)));
+        graph.put(2, new HashSet<>(Arrays.asList(1, 4)));
+        graph.put(3, new HashSet<>(Arrays.asList(1, 5)));
+        graph.put(4, new HashSet<>(Arrays.asList(2, 6)));
+        graph.put(5, new HashSet<>(Arrays.asList(3)));
+        graph.put(6, new HashSet<>(Arrays.asList(4)));
+
+        // 确诊病例集合
+        Set<Integer> confirmedCases = new HashSet<>(Arrays.asList(1));
+
+        // 查找需要核酸检测的人
+        Set<Integer> toTest = findAffectedPeople(graph, confirmedCases);
+
+        // 输出结果
+        System.out.println("需要进行核酸检测的人数: " + toTest.size());
+        System.out.println("需要进行核酸检测的人: " + toTest);
+    }
+    /*小明和朋友们一起玩跳格子游戏，每个格子上有特定的分数，
+    score[] = [1 -1 -6 7 -17 7]，从起点score[0]开始，每次最大跳的步长为k，请你返回小明跳到终点score[n-1]时，能得到的最大得分 。
+
+    注：
+    格子的总长度和步长的区间在 [1,  100000]；
+    每个格子的分数在[-10000, 10000]区间中*/
+    public static int maxScore(int[] score, int k) {
+        int n = score.length;
+        if (n == 0) return 0;
+
+        // dp数组用于存储到达每个格子时的最大得分
+        int[] dp = new int[n];
+        dp[0] = score[0];
+
+        // 使用滑动窗口来优化状态转移
+        Deque<Integer> deque = new LinkedList<>();
+        deque.addLast(0);
+
+        for (int i = 1; i < n; i++) {
+            // 删除不在滑动窗口内的元素
+            while (!deque.isEmpty() && deque.peekFirst() < i - k) {
+                deque.pollFirst();
+            }
+
+            // 更新当前格子的最大得分
+            dp[i] = score[i] + dp[deque.peekFirst()];
+
+            // 维护单调递减队列
+            while (!deque.isEmpty() && dp[deque.peekLast()] <= dp[i]) {
+                deque.pollLast();
+            }
+            deque.addLast(i);
+        }
+
+        return dp[n - 1];
+    }
+    private static void Test66() {
+        int[] score = {1, -1, -6, 7, -17, 7};
+        int k = 2; // Example jump length
+
+        int result = maxScore(score, k);
+        System.out.println("The maximum score achievable is: " + result);
+    }
+    /*石头剪刀布游戏有3种出拳形状：石头、剪刀、布。 分别用字母 A,B,C表示。
+
+    游戏规则：
+
+            1）出拳形状之间的胜负规则如下：A> B；B> C；C> A
+
+“>” 左边一个字母，表示相对优势形状。 右边一个字母，表示相对劣势形状。
+
+            2) 当本场次中有且仅有一种出拳形状优于其它出拳形状，则该形状的玩家是胜利者。 否则认为是平局。
+    例如1 三个玩家出拳分别是 A,B,C。由于出现三方优势循环（即没有任何一方优于其它出拳者），判断为平局。
+    例如2 三个玩家，出拳分别是 A,B。出拳A的获胜。
+    例如3   三个玩家，出拳全部是 A。 判为平局
+3）当发生平局，没有赢家。有多个胜利者时，同为赢家。*/
+// 判断游戏结果
+    public static String determineWinner(char[] moves) {
+        // 统计每种出拳形状的数量
+        Map<Character, Integer> countMap = new HashMap<>();
+        for (char move : moves) {
+            countMap.put(move, countMap.getOrDefault(move, 0) + 1);
+        }
+
+        // 检查是否有且仅有一种出拳形状
+        if (countMap.size() == 1) {
+            return "Draw"; // 所有玩家出拳一样
+        }
+
+        // 如果有两种出拳形状，判断是否一种形状优于另一种
+        if (countMap.size() == 2) {
+            // 取出两种出拳形状
+            char[] keys = new char[2];
+            int index = 0;
+            for (char key : countMap.keySet()) {
+                keys[index++] = key;
+            }
+
+            char first = keys[0];
+            char second = keys[1];
+
+            // 判断两种出拳形状的胜负关系
+            if ((first == 'A' && second == 'B') ||
+                    (first == 'B' && second == 'C') ||
+                    (first == 'C' && second == 'A')) {
+                return String.valueOf(first); // first 形状胜过 second 形状
+            }
+            if ((second == 'A' && first == 'B') ||
+                    (second == 'B' && first == 'C') ||
+                    (second == 'C' && first == 'A')) {
+                return String.valueOf(second); // second 形状胜过 first 形状
+            }
+        }
+
+        // 如果三种形状都有出现，则是平局
+        return "Draw";
+    }
+
+    private static void Test67() {
+        // 测试用例
+        char[] moves1 = {'A', 'B', 'C'}; // 平局
+        char[] moves2 = {'A', 'B', 'B'}; // B 胜
+        char[] moves3 = {'A', 'A', 'A'}; // 平局
+        char[] moves4 = {'C', 'C', 'B'}; // C 胜
+
+        System.out.println("Result 1: " + determineWinner(moves1)); // Draw
+        System.out.println("Result 2: " + determineWinner(moves2)); // B
+        System.out.println("Result 3: " + determineWinner(moves3)); // Draw
+        System.out.println("Result 4: " + determineWinner(moves4)); // C
+    }
+
+    /*部门准备举办一场王者荣耀表演赛，有10名游戏爱好者参与，
+    分为两队，每队5人。每位参与者都有一个评分，代表着他的游戏水平。
+    为了表演赛尽可能精彩，我们需要把10名参赛者分为实力尽量相近的两队。一队的实力可以表示为这一队5名队员的评分总和。
+    现在给你10名参与者的游戏水平评分，请你根据上述要求分队，最后输出这两组的实力差绝对值。
+    例：10名参赛者的评分分别为5 1 8 3 4 6 7 10 9 2，分组为（1 3 5 8 10）（2 4  6 7 9），
+    两组实力差最小，差值为1。有多种分法，但实力差的绝对值最小为1。*/
+    private static int minDifference = Integer.MAX_VALUE;
+
+    public static int findMinDifference(int[] scores) {
+        int totalSum = Arrays.stream(scores).sum();
+        boolean[][] dp = new boolean[scores.length + 1][totalSum / 2 + 1];
+
+        dp[0][0] = true; // 0 items can form sum 0
+
+        // Populate the dp table
+        for (int i = 1; i <= scores.length; i++) {
+            for (int j = 0; j <= totalSum / 2; j++) {
+                dp[i][j] = dp[i - 1][j];
+                if (j >= scores[i - 1]) {
+                    dp[i][j] = dp[i][j] || dp[i - 1][j - scores[i - 1]];
+                }
+            }
+        }
+
+        int bestSum = 0;
+        for (int j = totalSum / 2; j >= 0; j--) {
+            if (dp[scores.length][j]) {
+                bestSum = j;
+                break;
+            }
+        }
+
+        return Math.abs(totalSum - 2 * bestSum);
+    }
+    private static void Test68() {
+        int[] scores = {5, 1, 8, 3, 4, 6, 7, 10, 9, 2};
+        int result = findMinDifference(scores);
+        System.out.println("The minimum difference between the two teams is: " + result);
+    }
+    /*小朋友出操，按学号从小到大排成一列；小明来迟了，请你给小明出个主意，让他尽快找到他应该排的位置。
+    算法复杂度要求不高于nLog(n)；学号为整数类型，队列规模<=10000；*/
+// 使用二分查找算法来确定插入位置
+    public static int findInsertPosition(int[] sortedArray, int target) {
+        int left = 0;
+        int right = sortedArray.length;
+
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+
+            if (sortedArray[mid] < target) {
+                left = mid + 1;
+            } else {
+                right = mid;
+            }
+        }
+
+        return left;
+    }
+    private static void Test69() {
+        int[] queue = {1, 2, 4, 5, 6}; // 排好序的队列
+        int newStudentId = 3; // 小明的学号
+
+        int position = findInsertPosition(queue, newStudentId);
+        System.out.println("小明应该排在位置: " + position);
+    }
+    /*幼儿园里有一个放倒的圆桶，它是一个线性结构，允许在桶的右边将篮球放入，
+    可以在桶的左边和右边将篮球取出。每个篮球有单独的编号，老师可以连续放入一个或多个篮球，
+    小朋友可以在桶左边或右边将篮球取出，当桶里只有一个篮球的情况下，必须从左边取出。
+
+    如老师按顺序放入1、2、3、4、5 共5个编号的篮球，
+    那么小朋友可以依次取出的编号为“1,2,3,4,5”或者“3,1,2,4,5”编号的篮球，无法取出 “5,1,3,2,4” 编号的篮球
+    其中“3,1,2,4,5”的取出场景为：连续放入1,2,3号 -> 从右边取出3号 ->
+    从左边取出1号 -> 从左边取出2号 -> 放入4号 -> 从左边取出4号 -> 放入5号 -> 从左边取出5号，
+    简单起见，我们以L表示左，R表示右，此时的篮球的依次取出序列为“ RLLLL ”*/
+    public static boolean canAchieveSequence(int[] sequence, String operations) {
+        // 用双端队列（Deque）来模拟放置和取出操作
+        Deque<Integer> deque = new LinkedList<>();
+
+        // 当前操作的篮球索引
+        int currentBasketball = 1;
+
+        for (char op : operations.toCharArray()) {
+            if (op == 'R') {
+                // 从右边取出篮球
+                if (deque.isEmpty() || deque.peekLast() != sequence[currentBasketball - 1]) {
+                    return false;
+                }
+                deque.pollLast();
+            } else if (op == 'L') {
+                // 从左边取出篮球
+                if (deque.isEmpty() || deque.peekFirst() != sequence[currentBasketball - 1]) {
+                    return false;
+                }
+                deque.pollFirst();
+            } else {
+                // 无效的操作字符
+                return false;
+            }
+
+            // 判断是否有更多篮球需要放入
+            if (currentBasketball <= sequence.length) {
+                deque.addLast(currentBasketball);
+                currentBasketball++;
+            }
+        }
+
+        return true;
+    }
+    private static void Test70() {
+        int[] sequence = {1, 2, 3, 4, 5}; // 放入顺序
+        String operations = "RLLLL"; // 取出操作
+
+        if (canAchieveSequence(sequence, operations)) {
+            System.out.println("The sequence is achievable.");
+        } else {
+            System.out.println("The sequence is not achievable.");
+        }
+    }
+    /*孙悟空爱吃蟠桃，有一天趁着蟠桃园守卫不在来偷吃。已知蟠桃园有N颗桃树，每颗树上都有桃子，守卫将在H小时后回来。
+
+    孙悟空可以决定他吃蟠桃的速度K（个/小时），每个小时选一颗桃树，并从树上吃掉K个，
+    如果树上的桃子少于K个，则全部吃掉，并且这一小时剩余的时间里不再吃桃。
+
+    孙悟空喜欢慢慢吃，但又想在守卫回来前吃完桃子。
+
+    请返回孙悟空可以在H小时内吃掉所有桃子的最小速度K（K为整数）。如果以任何速度都吃不完所有桃子，则返回0。*/
+    public static int minSpeed(int[] peaches, int H) {
+        int left = 1;
+        int right = findMax(peaches);
+        int result = -1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (canEatAll(peaches, H, mid)) {
+                result = mid;
+                right = mid - 1; // Try to find a smaller valid K
+            } else {
+                left = mid + 1; // Increase K
+            }
+        }
+
+        return result;
+    }
+
+    private static int findMax(int[] peaches) {
+        int max = 0;
+        for (int p : peaches) {
+            if (p > max) {
+                max = p;
+            }
+        }
+        return max;
+    }
+
+    private static boolean canEatAll(int[] peaches, int H, int K) {
+        int hoursNeeded = 0;
+        for (int p : peaches) {
+            hoursNeeded += (p + K - 1) / K; // Equivalent to Math.ceil((double)p / K)
+        }
+        return hoursNeeded <= H;
+    }
+    private static void Test71() {
+        int[] peaches = {4, 5, 7, 8, 10}; // Example input
+        int H = 7; // Example maximum hours
+
+        int result = minSpeed(peaches, H);
+        if (result == -1) {
+            System.out.println("It is not possible to eat all peaches within the given hours.");
+        } else {
+            System.out.println("The minimum speed K is: " + result);
+        }
+    }
+    /*攀登者喜欢寻找各种地图，并且尝试攀登到最高的山峰。
+    地图表示为一维数组，数组的索引代表水平位置，数组的高度代表相对海拔高度。其中数组元素0代表地面。
+    例如[0,1,2,4,3,1,0,0,1,2,3,1,2,1,0], 代表如下图所示的地图，地图中有两个山脉位置分别为 1,2,3,4,5和8,9,10,11,12,13，最高峰高度分别为 4,3。最高峰位置分别为3,10。
+    一个山脉可能有多座山峰(高度大于相邻位置的高度，或在地图边界且高度大于相邻的高度)。
+            4
+
+            +---+
+            |   |
+            |   | 3                       3
+            |   |
+            |   +---+                   -----
+            |       |                   |   |
+            2 |       |                 2 |   |     2
+            |       |                   |   |
+            +---+       |               ----+   |   +---+
+            |           |               |       |   |   |
+            1 |           | 1           1 |       | 1 |   | 1
+            |           |               |       |   |   |
+            +---+           +---+       +---+       +---+   +---+
+            |                   |       |                       |
+            0 |                   | 0   0 |                       | 0
+            |                   |       |                       |
+            +---+                   +-------+                       +---+
+
+            0   1   2   3   4   5   6   7   8   9  10  11  12  13  14
+    登山时会消耗登山者的体力(整数)，上山时，消耗相邻高度差两倍的体力，下坡时消耗相邻高度差一倍的体力，平地不消耗体力，登山者体力消耗到零时会有生命危险。
+    例如，上图所示的山峰，从索引0，走到索引1，高度差为1，需要消耗2X1=2的体力，从索引2高度2走到高度4索引3需要消耗2X2=4的体力。如果是从索引3走到索引4则消耗1X1=1的体力。
+    登山者想要知道一张地图中有多少座山峰
+*/
+    public static int countPeaks(int[] heights) {
+        if (heights == null || heights.length == 0) {
+            return 0;
+        }
+
+        int n = heights.length;
+        int peakCount = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (isPeak(heights, i)) {
+                peakCount++;
+            }
+        }
+
+        return peakCount;
+    }
+
+    private static boolean isPeak(int[] heights, int index) {
+        int n = heights.length;
+
+        if (index == 0) {
+            // First element
+            return n > 1 && heights[index] > heights[index + 1];
+        } else if (index == n - 1) {
+            // Last element
+            return n > 1 && heights[index] > heights[index - 1];
+        } else {
+            // Middle elements
+            return heights[index] > heights[index - 1] && heights[index] > heights[index + 1];
+        }
+    }
+    private static void Test72() {
+        int[] heights = {0, 1, 2, 4, 3, 1, 0, 0, 1, 2, 3, 1, 2, 1, 0};
+        int numberOfPeaks = countPeaks(heights);
+        System.out.println("Number of peaks: " + numberOfPeaks);
     }
 
     public static void main(String[] args) {
-        Test45();
+        Test50();
     }
 }
