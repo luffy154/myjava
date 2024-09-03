@@ -3131,6 +3131,11 @@ public class Algorithm {
         return dp[0][n - 1];
     }
 
+    private static void test(){
+        int[] pizzas = {8,2,10,5,7};
+        System.out.println(maxPizzaForChihuo(pizzas));
+    }
+
     /*现代计算机系统中通常存在多级的存储设备，针对海量workload的优化的一种思路是将热点内存页优先放到快速存储层级，这就需要对内存页进行冷热标记。
     一种典型的方案是基于内存页的访问频次进行标记，如果统计窗口内访问次数大于等于设定阈值，则认为是热内存页，否则是冷内存页。
     对于统计窗口内跟踪到的访存序列和阈值，现在需要实现基于频次的冷热标记。内存页使用页框号作为标识。*/
@@ -4073,6 +4078,6 @@ public class Algorithm {
     }
 
     public static void main(String[] args) {
-        Test50();
+        test();
     }
 }
