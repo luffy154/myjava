@@ -19,7 +19,7 @@ public class AAATest {
         //取数计数器
         counter++;
         pizzaLink.isEmpty = true;
-        System.out.print(pizzaLink.val+"+"+counter+"  ");
+        System.out.println(pizzaLink.val+"+"+counter+"  ");
         PizzaLink left = pizzaLink.left, right = pizzaLink.right;
         int size = 0;
         for (int i = 0; i < N; i++) {
@@ -37,8 +37,12 @@ public class AAATest {
         }
 
         if (left.isEmpty && right.isEmpty) {
-            counter--;
             pizzaLink.isEmpty = false;
+            if(counter % 2 == 0){
+                counter--;
+                return 0;
+            }
+            counter--;
             return pizzaLink.val;
         }
 
@@ -52,9 +56,9 @@ public class AAATest {
             }
         } else {
             if(left.val>right.val){
-                size+=calcCount(left, counter, N);
+                size=calcCount(left, counter, N);
             }else{
-                size+=calcCount(right, counter, N);
+                size=calcCount(right, counter, N);
             }
             size += pizzaLink.val;
         }
@@ -64,7 +68,7 @@ public class AAATest {
     }
 
     public static void main(String[] args) {
-        int[] pizzas = {8,2,10,5,7};
+        int[] pizzas = {8,2,10,5,7,20,11};
         Map<Integer, PizzaLink> map = new HashMap<>();
         for (int i = 0; i < pizzas.length; i++) {
             PizzaLink pizzaLink = new PizzaLink(pizzas[i]);
