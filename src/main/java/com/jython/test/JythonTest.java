@@ -2,6 +2,8 @@ package com.jython.test;
 
 import org.python.util.PythonInterpreter;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Objects;
 
 /**
@@ -12,6 +14,13 @@ import java.util.Objects;
  */
 public class JythonTest {
     public static void main(String[] args) {
+        System.out.println(
+                System.currentTimeMillis()
+        );
+        System.out.println(String.format("%-18s",System.currentTimeMillis()).replace(' ', '0'));
+        BigDecimal number = new BigDecimal("0.9");
+        BigDecimal fullNumber = BigDecimal.ONE;
+        System.out.println(number.divide(fullNumber, RoundingMode.DOWN));
         // 创建 Jython 解释器
         PythonInterpreter interpreter = new PythonInterpreter();
 
@@ -39,5 +48,7 @@ public class JythonTest {
         System.out.println("Jython function result: " + a);
         // 关闭解释器
         interpreter.close();
+
+
     }
 }

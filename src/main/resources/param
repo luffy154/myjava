@@ -1,0 +1,16 @@
+参数名
+类型
+是否必填
+描述
+groupId
+Long
+是
+集团ID
+brandId
+Long
+是
+品牌ID
+shopId
+Long
+是
+店铺ID

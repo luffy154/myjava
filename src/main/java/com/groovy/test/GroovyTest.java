@@ -1,5 +1,7 @@
 package com.groovy.test;
 
+import com.hefu.settlement.api.SettlementApi;
+import com.hefu.settlement.api.response.BaseResp;
 import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
 import groovy.lang.Script;
@@ -15,6 +17,8 @@ import java.util.Map;
  */
 public class GroovyTest {
     public static void main(String[] args) {
+        BaseResp baseResp = new BaseResp();
+
         GroovyShell shell = new GroovyShell();
         String script = "def greet(name) { return 'Hello, ' + name }; return greet('World')";
         Object result = shell.evaluate(script);
