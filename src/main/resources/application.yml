@@ -1,0 +1,51 @@
+# application.yml
+spring:
+  mail:
+    primary:
+      host: smtp.qq.com       # SMTP服务器地址smtp.feishu.cn
+      port: 587                    # 安全端口（TLS）587
+      username: 1318726761@qq.com   # 发件邮箱
+      password: lhsxnnouffeggbii      # 邮箱密码/授权码
+      protocol: smtp
+      properties:
+        mail:
+          smtp:
+            auth: true
+            starttls:
+              enable: true         # 启用TLS加密
+            connectiontimeout: 2000
+            timeout: 5000
+            writetimeout: 5000
+
+custom:
+  mail:
+    qq-mail:
+      host: smtp.qq.com       # SMTP服务器地址smtp.feishu.cn
+      port: 587                    # 安全端口（TLS）587
+      username: 1548476679@qq.com   # 发件邮箱
+      password: lhsxnnouffeggbii      # 邮箱密码/授权码
+      protocol: smtp
+      properties:
+        mail:
+          smtp:
+            auth: true
+            starttls:
+              enable: true         # 启用TLS加密
+            connectiontimeout: 2000
+            timeout: 5000
+            writetimeout: 5000
+    feishu-mail:
+      host: smtp.feishu.cn       # SMTP服务器地址smtp.feishu.cn
+      port: 587                    # 安全端口（TLS）587
+      username: software-dept@hf-lm.com   # 发件邮箱
+      password: dlJOhYBypT21ryiQ      # 邮箱密码/授权码
+      protocol: smtp
+      properties:
+        mail:
+          smtp:
+            auth: true
+            starttls:
+              enable: true         # 启用TLS加密
+            connectiontimeout: 2000
+            timeout: 5000
+            writetimeout: 5000

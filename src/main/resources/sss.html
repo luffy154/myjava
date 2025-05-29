@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>询证函</title>
+    <style>
+        @font-face {
+            font-family: 'SourceHanSans';
+            src: url('fonts/NotoSansSC-Regular.ttf');
+        }
+        body {
+            font-family: SourceHanSans, sans-serif;
+            line-height: 1.5;
+            width: 800px; /* 🛠️ 替换max-width */
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 30px;
+        }
+
+        .document-number {
+            text-align: right;
+            margin: -10px 0 20px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        /* 🛠️ Flex布局替代方案 */
+        .conclusion-section {
+            overflow: hidden; /* 清除浮动 */
+            width: 100%;
+        }
+
+        .conclusion-box {
+            width: 49%;
+            border: 1px solid #0b0b0b;
+            padding-left: 10px;
+            color: #666;
+            float: left; /* 🛠️ 使用浮动布局 */
+            box-sizing: border-box;
+        }
+
+        .conclusion-box:nth-child(2) {
+            float: right; /* 🛠️ 右对齐 */
+        }
+
+        /* 🛠️ 表格布局替代flex */
+        .contact-line {
+            overflow: hidden;
+            margin: 8px 0;
+        }
+
+        .left-align {
+            float: left;
+            width: 45%;
+            padding-right: 10px;
+            text-align: left;
+        }
+
+        .right-align {
+            float: right;
+            width: 45%;
+            padding-left: 10px;
+            text-align: right;
+        }
+
+        /* 🛠️ 逻辑属性转换 */
+        .company-name {
+            display: block;
+            margin-top: 1em;    /* 替换margin-block-start */
+            margin-bottom: 1em; /* 替换margin-block-end */
+        }
+
+        /* 🛠️ 金额标题布局修正 */
+        .amount-header {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .account-title {
+            float: left;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .currency-unit {
+            float: right;
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* 🛠️ 签名区域调整 */
+        .signature-space {
+            display: inline-block;
+            width: 60px; /* 模拟4个汉字宽度 */
+            border-bottom: 1px solid #000;
+            vertical-align: baseline;
+        }
+
+        /* 🛠️ 去除CSS3渐变 */
+        .blank-box {
+            height: 120px;
+            border: 1px solid #999;
+        }
+
+        /* 通用表格样式 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        th, td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: left;
+        }
+
+        /* 🛠️ 右对齐区块 */
+        .signature-block {
+            text-align: right;
+            margin-top: 40px;
+        }
+
+        .note {
+            font-size: 15px;
+            color: #666;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+<!-- 正文结构保持不变，仅样式调整 -->
+<div class="header">
+    <h3>询 证 函</h3>
+</div>
+<div class="document-number">编号：2025CQ003</div>
+<div class="company-name"><span style="border-bottom: black solid 1px;">武汉仁耀谦信息科技有限公司</span>：</div>
+
+<div>本公司聘请的<span class="block-placeholder">南通炜恒会计师事务所（普通合伙）</span>正在对本公司2024年12月31日的财务报表进行审计......</div>
+
+<div class="contact-wrapper">
+    <div class="contact-line">
+        <span class="left-align">回函地址：江苏省如皋市城北街道889号</span>
+        <span class="right-align">联系人：刘新星</span>
+    </div>
+    <div class="contact-line">
+        <span class="left-align">邮编：226500</span>
+        <span class="right-align">电话：15295731960</span>
+    </div>
+</div>
+
+<div class="amount-header">
+    <span class="account-title">1．本公司与贵公司的往来账项列示如下：</span>
+    <span class="currency-unit">单位：元</span>
+</div>
+
+<table>
+    <!-- 表格内容保持不变 -->
+</table>
+
+<!-- 其他区块保持不变 -->
+
+<div class="conclusion-section">
+    <div class="conclusion-box">
+        <div class="conclusion-box-remark">1.信息证明无误</div>
+        <div>（公司盖章）</div>
+        <div class="conclusion-box-left">年　月　日</div>
+        <div class="conclusion-box-left"><span>经办人：</span><span class="signature-space"></span></div>
+    </div>
+
+    <div class="conclusion-box">
+        <div class="conclusion-box-remark">2.信息不符，请列明不符的详细情况</div>
+        <div>（公司盖章）</div>
+        <div class="conclusion-box-left">年　月　日</div>
+        <div class="conclusion-box-left"><span>经办人：</span><span class="signature-space"></span></div>
+    </div>
+</div>
+</body>
+</html>
