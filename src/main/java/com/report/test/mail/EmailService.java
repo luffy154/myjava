@@ -6,10 +6,12 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import javax.annotation.Resource;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.sql.DataSource;
 import java.io.File;
 
 /**
@@ -23,6 +25,9 @@ public class EmailService {
 
     @Resource
     private JavaMailSender mailSender;
+
+    @Resource
+    private DataSource dataSource;
 
     @Value("${spring.mail.primary.username}")
     private String fromEmail;
@@ -77,6 +82,13 @@ public class EmailService {
         helper.addAttachment(attachmentFileName, resource);
 
         mailSender.send(message);
+    }
+
+    public void test(){
+        Object mainConnection = TransactionSynchronizationManager.getResource(dataSource);
+        TransactionSynchronizationManager.bindResource(dataSource, mainConnection);
+
+        TransactionSynchronizationManager.unbindResource(dataSource);
     }
 }
 
