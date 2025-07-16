@@ -16,6 +16,28 @@ spring:
             connectiontimeout: 2000
             timeout: 5000
             writetimeout: 5000
+  redis:
+    host: 10.10.0.5
+    port: 6379
+    password: kT9!@fx@vK6sBLLU
+    database: 8
+    lettuce:
+      pool:
+        max-active: 100
+        max-wait: 2s
+        min-idle: 10
+        max-idle: 50
+        time-between-eviction-runs: 5m
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration
+      - org.springframework.boot.autoconfigure.r2dbc.R2dbcAutoConfiguration
+      - org.springframework.boot.autoconfigure.admin.SpringApplicationAdminJmxAutoConfiguration
+  application:
+    admin:
+      jmx:
+        enabled: false
 
 custom:
   mail:

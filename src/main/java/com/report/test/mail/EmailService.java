@@ -26,8 +26,8 @@ public class EmailService {
     @Resource
     private JavaMailSender mailSender;
 
-    @Resource
-    private DataSource dataSource;
+//    @Resource
+//    private DataSource dataSource;
 
     @Value("${spring.mail.primary.username}")
     private String fromEmail;
@@ -84,11 +84,11 @@ public class EmailService {
         mailSender.send(message);
     }
 
-    public void test(){
-        Object mainConnection = TransactionSynchronizationManager.getResource(dataSource);
-        TransactionSynchronizationManager.bindResource(dataSource, mainConnection);
-
-        TransactionSynchronizationManager.unbindResource(dataSource);
-    }
+//    public void test(){
+//        Object mainConnection = TransactionSynchronizationManager.getResource(dataSource);
+//        TransactionSynchronizationManager.bindResource(dataSource, mainConnection);
+//
+//        TransactionSynchronizationManager.unbindResource(dataSource);
+//    }
 }
 

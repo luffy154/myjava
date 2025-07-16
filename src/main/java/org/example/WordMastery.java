@@ -55,7 +55,7 @@ public class WordMastery {
     }
 
     public static void main(String[] args) {
-        String[] words = {"abc", "def", "gih"};
+        String[] words = {"abc", "def", "gih", "a2b2c"};
         String chars = "a?b?c";
 
         int result = countMasteredWords(words, chars);
