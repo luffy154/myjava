@@ -60,15 +60,15 @@ public class RedBlack {
                 parent.right = newNode;
             }
 
-            fixInsert2(newNode);
+            fixInsert(newNode);
         }
 
         // 修复插入后红黑树性质的方法
         private void fixInsert(Node node) {
-            while (node != root && node.parent.color == Color.RED) {
+            while (node != root && node.parent.color == Color.RED && node.parent.parent!=null) {
                 if (node.parent == node.parent.parent.left) {
                     Node uncle = node.parent.parent.right;
-                    if (uncle.color == Color.RED) {
+                    if (uncle!=null && uncle.color == Color.RED) {
                         node.parent.color = Color.BLACK;
                         uncle.color = Color.BLACK;
                         node.parent.parent.color = Color.RED;
@@ -84,7 +84,7 @@ public class RedBlack {
                     }
                 } else {
                     Node uncle = node.parent.parent.left;
-                    if (uncle.color == Color.RED) {
+                    if (uncle!=null && uncle.color == Color.RED) {
                         node.parent.color = Color.BLACK;
                         uncle.color = Color.BLACK;
                         node.parent.parent.color = Color.RED;
@@ -103,23 +103,15 @@ public class RedBlack {
             root.color = Color.BLACK;
         }
 
-        private void fixInsert2(Node node) {
-            while (node != root && node.parent.color == Color.RED) {
-                if (node.parent.left == node) {
-                    rotateRight(node.parent.parent);
-                } else {
-                    rotateLeft(node.parent.parent);
-                }
-            }
-            root.color = Color.BLACK;
-        }
-
         // 左旋操作
         private void rotateLeft(Node node) {
+            if(node==null||node==NIL){
+                return;
+            }
             Node rightChild = node.right;
             node.right = rightChild.left;
 
-            if (rightChild.left != NIL) {
+            if (rightChild.left!=null && rightChild.left != NIL) {
                 rightChild.left.parent = node;
             }
 
@@ -139,6 +131,9 @@ public class RedBlack {
 
         // 右旋操作
         private void rotateRight(Node node) {
+            if(node==null||node==NIL){
+                return;
+            }
             Node leftChild = node.left;
             node.left = leftChild == null ? null : leftChild.right;
 
@@ -161,11 +156,15 @@ public class RedBlack {
         }
 
         // 打印红黑树（中序遍历）
-        public void inorderTraversal(Node node) {
+        public void inorderTraversal(Node node,int level) {
             if (node != NIL && node != null) {
-                inorderTraversal(node.left);
-                System.out.print(node.data + "(" + node.color + ") ");
-                inorderTraversal(node.right);
+
+                inorderTraversal(node.right, level + 1);
+                for (int i = 0; i < level; i++)
+                    System.out.print("    ");
+
+                System.out.print(node.data + "(" + node.color + ") \n");
+                inorderTraversal(node.left, level + 1);
             }
         }
 
@@ -175,11 +174,18 @@ public class RedBlack {
             tree.insert(20);
             tree.insert(30);
             tree.insert(15);
-            tree.inorderTraversal(tree.root);
+            tree.insert(16);
+            tree.insert(25);
+            tree.insert(17);
+            tree.insert(9);
+            tree.insert(36);
+            tree.insert(24);
+            tree.insert(27);
+            tree.inorderTraversal(tree.root,0);
 
             System.out.println("Inorder traversal of the tree:");
-            tree.inorderTraversal(tree.root);
-            System.out.println();
+//            tree.inorderTraversal(tree.root);
+//            System.out.println();
         }
     }
 

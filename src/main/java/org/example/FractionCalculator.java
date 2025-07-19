@@ -173,7 +173,7 @@ public class FractionCalculator {
 
     public static void main(String[] args) {
         String expression1 = "1/2 + 3/4 * (1 + 1/2)";
-        String expression2 = "1/0 + 3/4"; // Should return ERROR
+        String expression2 = "1/4 + 3/4"; // Should return ERROR
         System.out.println(evaluateExpression(expression1)); // Output: 5/4
         System.out.println(evaluateExpression(expression2)); // Output: ERROR
     }

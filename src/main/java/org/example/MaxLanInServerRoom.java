@@ -56,7 +56,7 @@ public class MaxLanInServerRoom {
         int[][] grid = {
                 {1, 0, 0, 1, 0},
                 {1, 1, 0, 0, 0},
-                {0, 1, 0, 0, 1},
+                {0, 1, 1, 1, 1},
                 {0, 0, 0, 1, 1}
         };
         System.out.println(maxLan(grid));  // 示例输出：4

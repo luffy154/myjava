@@ -171,15 +171,15 @@ public class RedBlackTree<K extends Comparable<K>, V> {
     }
 
     // 左旋转
-    private Node rotateLeft(Node h) {
-        Node x = h.right;
-        h.right = x.left;
-        x.left = h;
-        x.color = h.color;
-        h.color = RED;
-        x.size = h.size;
-        h.size = 1 + size(h.left) + size(h.right);
-        return x;
+    private Node rotateLeft(Node father) {
+        Node right = father.right;
+        father.right = right.left;
+        right.left = father;
+        right.color = father.color;
+        father.color = RED;
+        right.size = father.size;
+        father.size = 1 + size(father.left) + size(father.right);
+        return right;
     }
 
     // 右旋转
