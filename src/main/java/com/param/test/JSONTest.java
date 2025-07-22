@@ -1,6 +1,7 @@
 package com.param.test;
 
 import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
 import com.alibaba.fastjson2.TypeReference;
 
 import java.util.Map;
@@ -13,109 +14,98 @@ import java.util.Map;
  */
 public class JSONTest {
     public static void main(String[] args) {
-        String json ="{\n" +
-                "    \"12306网餐\": \"B007\",\n" +
-                "    \"20代金券\": \"B007\",\n" +
-                "    \"26元餐标\": \"B007\",\n" +
-                "    \"50代金券\": \"B007\",\n" +
-                "    \"5i会员\": \"B003\",\n" +
-                "    \"925机场补贴\": \"B007\",\n" +
-                "    \"万达小程序\": \"B007\",\n" +
-                "    \"万达钱包\": \"B007\",\n" +
-                "    \"业主预付款\": \"B007\",\n" +
-                "    \"业主餐卡\": \"B007\",\n" +
-                "    \"东方福利网\": \"B007\",\n" +
-                "    \"买单云\": \"B007\",\n" +
-                "    \"云闪付\": \"B016\",\n" +
-                "    \"云闪付(商场代收)\": \"B011\",\n" +
-                "    \"交通银行APP支付\": \"B012\",\n" +
-                "    \"企业团餐支付\": \"B007\",\n" +
-                "    \"优托邦支付\": \"B007\",\n" +
-                "    \"关爱通支付\": \"B007\",\n" +
-                "    \"其它渠道\": \"B016\",\n" +
-                "    \"凤凰知音\": \"B007\",\n" +
-                "    \"同城(商场代收)\": \"B011\",\n" +
-                "    \"吾悦付\": \"B007\",\n" +
-                "    \"员工餐\": \"B087\",\n" +
-                "    \"和卡\": \"B007\",\n" +
-                "    \"商品券\": \"B007\",\n" +
-                "    \"商场代收\": \"B011\",\n" +
-                "    \"商场会员卡\": \"B007\",\n" +
-                "    \"商场会员卡(专用)\": \"B011\",\n" +
-                "    \"商场员工餐\": \"B007\",\n" +
-                "    \"园区点券\": \"B007\",\n" +
-                "    \"国航7折活动\": \"B007\",\n" +
-                "    \"对个人账户(商场代收)\": \"B011\",\n" +
-                "    \"对公账户(商场代收)\": \"B011\",\n" +
-                "    \"平安银行\": \"B007\",\n" +
-                "    \"广发银行\": \"B012\",\n" +
-                "    \"建行app支付\": \"B007\",\n" +
-                "    \"微信\": \"B005\",\n" +
-                "    \"微信(商场代收)\": \"B011\",\n" +
-                "    \"微信工行扫码\": \"B011\",\n" +
-                "    \"微信扫码(商场代收)\": \"B011\",\n" +
-                "    \"快手本地生活\": \"B007\",\n" +
-                "    \"悠饭企业餐\": \"B007\",\n" +
-                "    \"悠饭团餐\": \"B007\",\n" +
-                "    \"悠饭平台\": \"B007\",\n" +
-                "    \"招商银行\": \"B012\",\n" +
-                "    \"招商银行APP支付\": \"B012\",\n" +
-                "    \"招行APP支付\": \"B007\",\n" +
-                "    \"携程(商场代收)\": \"B011\",\n" +
-                "    \"支付宝\": \"B004\",\n" +
-                "    \"支付宝(商场代收)\": \"B011\",\n" +
-                "    \"数字人民币(商场代收)\": \"B011\",\n" +
-                "    \"易吃点\": \"B007\",\n" +
-                "    \"机场内部员工消费\": \"B007\",\n" +
-                "    \"民生银行\": \"B012\",\n" +
-                "    \"泰盛卡\": \"B007\",\n" +
-                "    \"浦发银行\": \"B007\",\n" +
-                "    \"熙香\": \"B007\",\n" +
-                "    \"物业小程序\": \"B007\",\n" +
-                "    \"物业收款\": \"B011\",\n" +
-                "    \"环球通卡\": \"B007\",\n" +
-                "    \"现金\": \"B001\",\n" +
-                "    \"现金(商场代收)\": \"B011\",\n" +
-                "    \"现金券\": \"B007\",\n" +
-                "    \"瑞祥卡\": \"B007\",\n" +
-                "    \"索贝瑞专用\": \"B007\",\n" +
-                "    \"索迪斯专用\": \"B007\",\n" +
-                "    \"索迪斯线下\": \"B007\",\n" +
-                "    \"线下扫码支付\": \"B007\",\n" +
-                "    \"美食登机牌\": \"B011\",\n" +
-                "    \"美餐网支付\": \"B007\",\n" +
-                "    \"补单\": \"B089\",\n" +
-                "    \"车间打包签单\": \"B006\",\n" +
-                "    \"金华永盛储值卡\": \"B007\",\n" +
-                "    \"银联(商场代收)\": \"B011\",\n" +
-                "    \"银联商务POS\": \"B002\",\n" +
-                "    \"银联刷卡机\": \"B002\",\n" +
-                "    \"顺丰丰食\": \"B007\",\n" +
-                "    \"餐卡扫码付\": \"B011\",\n" +
-                "    \"饭卡(商场代收)\": \"B011\",\n" +
-                "    \"饭折卡\": \"B007\",\n" +
-                "    \"30元招商代金券（15代30）\": \"B012\",\n" +
-                "    \"30元招商代金券（27代30）\": \"B012\",\n" +
-                "    \"30元招商银行代金券\": \"B012\",\n" +
-                "    \"50元招商银行代金券\": \"B012\",\n" +
-                "    \"中信银行代金券50元\": \"B012\",\n" +
-                "    \"乾隆冰芯蛋(美团229店)\": \"B009\",\n" +
-                "    \"广发10元代金券\": \"B012\",\n" +
-                "    \"广发32元代金券\": \"B012\",\n" +
-                "    \"招行代金券100元\": \"B012\",\n" +
-                "    \"招行代金券20元\": \"B012\",\n" +
-                "    \"招行代金券30元\": \"B012\",\n" +
-                "    \"招行代金券50元\": \"B012\",\n" +
-                "    \"民生25元优惠券\": \"B012\",\n" +
-                "    \"民生50元优惠券\": \"B012\",\n" +
-                "    \"民生7元优惠券\": \"B012\",\n" +
-                "    \"草本汤笋衣面\": \"B008\"\n" +
-                "}\n";
+        String json1 ="{\n" +
+                "\t\"traceid\": \"1e36279d8eb658aadd588dbe737b0329\",\n" +
+                "\t\"referer\": \"https://servicewechat.com/wx107eaf650c0a4a2d/804/page-frame.html\",\n" +
+                "\t\"content-length\": \"370\",\n" +
+                "\t\"x-wx-client-ip\": \"113.214.227.230\",\n" +
+                "\t\"unionid\": \"oLrXXjgl_PXdNMLcfaCdHPFLgrSU\",\n" +
+                "\t\"x-wx-route-tag\": \"f1a08ec0a5bc6f7b4bc577a735b49cb6\",\n" +
+                "\t\"x-wx-risk-rank\": \"2\",\n" +
+                "\t\"x-forwarded-port\": \"443\",\n" +
+                "\t\"x-wx-call-id\": \"1752930231656-71LmYCQ5\",\n" +
+                "\t\"userid\": \"80028550012928\",\n" +
+                "\t\"x-client-proto\": \"https\",\n" +
+                "\t\"x-wx-access-version\": \"1743391934\",\n" +
+                "\t\"x-forwarded-host\": \"bmp-weapp.hefunoodles.com\",\n" +
+                "\t\"brandid\": \"379517\",\n" +
+                "\t\"host\": \"172.20.2.102:9002\",\n" +
+                "\t\"content-type\": \"application/json\",\n" +
+                "\t\"x-client-proto-ver\": \"HTTP/1.1\",\n" +
+                "\t\"x-wx-appid\": \"wx107eaf650c0a4a2d\",\n" +
+                "\t\"x-forwarded-proto\": \"https,https\",\n" +
+                "\t\"openid\": \"oUF0x5UWsYO968ECPO887za-UpBk\",\n" +
+                "\t\"x-wx-device-security-status\": \"Unknown\",\n" +
+                "\t\"groupid\": \"267392\",\n" +
+                "\t\"x-wx-device-uv-30d\": \"0\",\n" +
+                "\t\"x-forwarded-for\": \"113.214.227.230,124.220.126.215,124.220.126.215\",\n" +
+                "\t\"x-wx-platform\": \"ios\",\n" +
+                "\t\"version\": \"2.0\",\n" +
+                "\t\"forwarded\": \"proto=https;host=bmp-weapp.hefunoodles.com;for=\\\"10.1.4.24:12834\\\"\",\n" +
+                "\t\"accept\": \"*/*\",\n" +
+                "\t\"x-real-ip\": \"124.220.126.215\",\n" +
+                "\t\"x-wx-source\": \"wx_client\",\n" +
+                "\t\"x-stgw-time\": \"1752930231.640\",\n" +
+                "\t\"x-wx-device-risk-rank\": \"0\",\n" +
+                "\t\"csession\": \"1752930222.scqsRyOm0yHmtIiSWdxYXknogC6Vfqwj.036f347ac4218bef\",\n" +
+                "\t\"traceparent\": \"00-1e36279d8eb658aadd588dbe737b0329-c591e4309826d576-01\",\n" +
+                "\t\"x-wx-device-uv-1d\": \"0\",\n" +
+                "\t\"x-wx-port\": \"443\",\n" +
+                "\t\"x-envoy-expected-rq-timeout-ms\": \"6000\",\n" +
+                "\t\"accept-encoding\": \"gzip\",\n" +
+                "\t\"user-agent\": \"Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.60(0x18003c32) NetType/WIFI Language/zh_CN MiniProgramEnv/iOS\",\n" +
+                "\t\"x-wx-device-uv-7d\": \"0\"\n" +
+                "}";
+        String json2 ="{\n" +
+                "\t\"traceid\": \"1fdec2330f5366c9305ae42a55dad064\",\n" +
+                "\t\"content-length\": \"385\",\n" +
+                "\t\"referer\": \"https://servicewechat.com/wx107eaf650c0a4a2d/804/page-frame.html\",\n" +
+                "\t\"x-wx-client-ip\": \"39.144.222.115\",\n" +
+                "\t\"unionid\": \"oLrXXjiENdkat-DMfY0FdH29_mJg\",\n" +
+                "\t\"x-wx-route-tag\": \"f1a08ec0a5bc6f7b4bc577a735b49cb6\",\n" +
+                "\t\"x-wx-risk-rank\": \"1\",\n" +
+                "\t\"x-forwarded-port\": \"443\",\n" +
+                "\t\"x-wx-call-id\": \"1752930321275-iBKCoL32\",\n" +
+                "\t\"userid\": \"1946480389262852096\",\n" +
+                "\t\"x-client-proto\": \"https\",\n" +
+                "\t\"x-wx-access-version\": \"1743391934\",\n" +
+                "\t\"x-forwarded-host\": \"bmp-weapp.hefunoodles.com\",\n" +
+                "\t\"brandid\": \"379517\",\n" +
+                "\t\"host\": \"172.20.1.106:9002\",\n" +
+                "\t\"content-type\": \"application/json\",\n" +
+                "\t\"x-client-proto-ver\": \"HTTP/1.1\",\n" +
+                "\t\"x-wx-appid\": \"wx107eaf650c0a4a2d\",\n" +
+                "\t\"x-forwarded-proto\": \"https,https\",\n" +
+                "\t\"openid\": \"oUF0x5ZKt0BB1KPzHKAkdyu5bePo\",\n" +
+                "\t\"x-wx-device-security-status\": \"Unknown\",\n" +
+                "\t\"groupid\": \"267392\",\n" +
+                "\t\"x-wx-device-uv-30d\": \"0\",\n" +
+                "\t\"x-forwarded-for\": \"39.144.222.115,124.220.126.215\",\n" +
+                "\t\"x-wx-platform\": \"android\",\n" +
+                "\t\"forwarded\": \"proto=https;host=bmp-weapp.hefunoodles.com;for=\\\"124.220.126.215:16374\\\"\",\n" +
+                "\t\"accept\": \"*/*\",\n" +
+                "\t\"x-real-ip\": \"124.220.126.215\",\n" +
+                "\t\"x-wx-source\": \"wx_client\",\n" +
+                "\t\"x-stgw-time\": \"1752930321.659\",\n" +
+                "\t\"x-wx-device-risk-rank\": \"0\",\n" +
+                "\t\"csession\": \"1752930304.wiNx4s98RdcQAIQoyU7bXhGDtyex4suQy49skJCW9UM=.93fa35fffd420695\",\n" +
+                "\t\"traceparent\": \"00-1fdec2330f5366c9305ae42a55dad064-2352c1ace5e680f4-01\",\n" +
+                "\t\"x-wx-device-uv-1d\": \"0\",\n" +
+                "\t\"x-wx-port\": \"443\",\n" +
+                "\t\"x-envoy-expected-rq-timeout-ms\": \"6000\",\n" +
+                "\t\"accept-encoding\": \"gzip\",\n" +
+                "\t\"user-agent\": \"Mozilla/5.0 (Linux; Android 15; 22081212C Build/AQ3A.241006.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/138.0.7204.63 Mobile Safari/537.36 XWEB/1380045 MMWEBSDK/20250503 MMWEBID/4461 MicroMessenger/8.0.61.2880(0x28003D50) WeChat/arm64 Weixin NetType/5G Language/zh_CN ABI/arm64 MiniProgramEnv/android\",\n" +
+                "\t\"x-wx-device-uv-7d\": \"0\"\n" +
+                "}";
 
-        Map<String,String> map = JSON.parseObject(json, new TypeReference<Map<String, String>>() {});
 
-        map.forEach((k,v)->{
-            System.out.println(1+"\t"+k+"\t"+v);
+        Map  jsonObject1 = JSON.parseObject(json1);
+        JSONObject  jsonObject2 = JSON.parseObject(json2);
+
+        jsonObject1.forEach((key, value) -> {
+            if(!jsonObject2.containsKey(key)){
+                System.out.println(key);
+            }
         });
     }
 }

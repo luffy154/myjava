@@ -1,0 +1,2 @@
+minweight=com.report.test.dubbo.extend.MinWeightLoadBalance
+random=org.apache.dubbo.rpc.cluster.loadbalance.RandomLoadBalance

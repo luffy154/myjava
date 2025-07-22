@@ -71,3 +71,18 @@ custom:
             connectiontimeout: 2000
             timeout: 5000
             writetimeout: 5000
+
+dubbo:
+  application:
+    name: user-service
+  registry:
+    address: nacos://10.10.0.13:8848?namespace=66b32662-ccbe-4376-91f5-510a0bcdc152&group=DEFAULT_GROUP
+    username: nacos
+    password: hfnacos
+  protocol:
+    name: dubbo
+    port: 20880
+    serialization: hessian2
+  reference:
+    com.report.test.dubbo.service.PretectService:
+      loadbalance: minweight

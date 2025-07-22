@@ -1,0 +1,10 @@
+dubbo:
+  application:
+    name: user-service
+  registry:
+    address: nacos://10.10.0.13:8848?namespace=public&group=DEFAULT_GROUP
+    username: nacos
+    password: hfnacos
+  protocol:
+    name: dubbo
+    port: 20880
