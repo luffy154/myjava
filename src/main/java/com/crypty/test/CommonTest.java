@@ -35,5 +35,7 @@ public class CommonTest {
         String data="[20051920240517000079,20051920240517000078]";
         List<BigInteger> list = JSON.parseArray(data,BigInteger.class);
         System.out.println(list);
+
+        System.out.println(Integer.parseInt("१२३"));
     }
 }
