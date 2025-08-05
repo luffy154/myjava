@@ -335,7 +335,39 @@
                 </executions>
             </plugin>
         </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <configuration>
+                        <skip>false</skip>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <skip>true</skip>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
-
+    <distributionManagement>
+        <repository>
+            <!--必须与 settings.xml 的 id 一致-->
+            <id>jshflm-yewuzhongtai-release</id>
+            <name>release</name>
+            <url>https://jshflm-maven.pkg.coding.net/repository/yewuzhongtai/release/</url>
+        </repository>
+        <snapshotRepository>
+            <!--必须与 settings.xml 的 id 一致-->
+            <id>jshflm-yewuzhongtai-snapshot</id>
+            <name>snapshot</name>
+            <url>https://jshflm-maven.pkg.coding.net/repository/yewuzhongtai/snapshot/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 </project>
