@@ -23,6 +23,7 @@ public class FastJsonValueDecoder extends AbstractValueDecoder {
     @Override
     protected Object doApply(byte[] buffer) throws Exception {
         GenericFastJsonRedisSerializer serializer1 = new GenericFastJsonRedisSerializer();
-        return serializer1.deserialize(buffer);
+        Object obj = serializer1.deserialize(buffer);
+        return obj;
     }
 }
