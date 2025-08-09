@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!--配置日志的上下文名称-->
+    <property name="log.context.name" value="promotion-service"/>
+    <!--继承默认配置-->
+    <include resource="logback-common-config.xml"/>
+    <!--继承默认appender-->
+    <include resource="logback-common-appender.xml"/>
+
+    <root level="info">
+        <springProfile name="test,pre,default">
+            <appender-ref ref="STDOUT"/>
+            <appender-ref ref="ASYNC_FILE_APP"/>
+            <appender-ref ref="ASYNC_FILE_ERROR"/>
+        </springProfile>
+        <springProfile name="prd">
+            <appender-ref ref="ASYNC_FILE_APP"/>
+            <appender-ref ref="ASYNC_FILE_ERROR"/>
+        </springProfile>
+    </root>
+</configuration>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+    <!--配置日志的上下文名称，需要服务自行配置-->
+    <springProperty scope="context" name="log.context.name" source="spring.application.name"/>
+    <contextName>${log.context.name}</contextName>
+    <!--日志的字符编码-->
+    <springProperty scope="context" name="log.charset" source="log.charset" defaultValue="UTF-8"/>
+    <!--历史记录最大保存天数-->
+    <springProperty scope="context" name="log.maxHistory" source="log.maxHistory" defaultValue="30"/>
+    <!--最大单个日志大小-->
+    <springProperty scope="context" name="log.maxSize" source="log.maxSize" defaultValue="1GB"/>
+    <!--日志Error级别名称配置-->
+    <springProperty scope="context" name="log.error.log.level" source="log.error.log.level" defaultValue="ERROR"/>
+    <springProperty scope="context" name="log.app.log.level" source="log.app.log.level" defaultValue="INFO"/>
+    <!--异步写日志的队列大小配置，默认为 256-->
+    <springProperty scope="context" name="log.async.queue.size" source="log.async.queue.size" defaultValue="512"/>
+    <!-- app.pattern 时间、日志级别、线程、traceID、服务方法路径（HTTP或GrpcServer）、集团ID、店铺ID、用户、订单号、拓展信息、日志主要信息 -->
+    <springProperty scope="context" name="log.app.pattern" source="log.app.pattern"
+                    defaultValue="%d{yyyy-MM-dd HH:mm:ss.SSS}$$%level{}$$[%thread]$$%X{traceID}$$%X{path}$$%X{groupID}$$%X{shopID}$$%X{user}$$%X{orderKey}$$%X{extension}$$%msg%n"/>
+    <springProperty scope="context" name="log.json.pattern" source="log.json.pattern"
+                    defaultValue='{"datetime":"%d{yyyy-MM-dd HH:mm:ss.SSS}","appName":"${module_name}","env":"${env}","host":"${hostname}","level":"%level","pid":"${PID:-}","thread":"%thread","tid":"%X{traceID}","class":"%logger","method":"%file","path":"%X{path}","shopId":"%X{shopId}","userId":"%X{userId}","memberId":"%X{memberId}","extKeyFir":"%X{extKeyFir}","extKeySec":"%X{extKeySec}","msg":"%msg%n","statckTrace":"%xEx"}'/>
+
+    <!-- 彩色日志依赖的渲染类 -->
+    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
+    <!-- 彩色日志格式 -->
+    <springProperty scope="context" name="log.console.pattern" source="log.console.pattern"
+                    defaultValue="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${PID:- }){magenta} %clr([%15.15t]){faint} %highlight(%-5level) %X{trace_id} %X{span_id} %cyan(%logger{50}) - %yellow([%file:%line]) - %msg%n"/>
+    <!-- debug.pattern 时间、traceID、日志主要信息 -->
+    <springProperty scope="context" name="log.debug.pattern" source="log.debug.pattern"
+                    defaultValue="%d{yyyy-MM-dd HH:mm:ss.SSS}$$%X{traceID}$$%msg%n"/>
+    <!-- heartbeat.pattern 时间、线程、日志主要信息 -->
+    <springProperty scope="context" name="log.heartbeat.pattern" source="log.heartbeat.pattern"
+                    defaultValue="%d{yyyy-MM-dd HH:mm:ss.SSS}$$[%thread]$$%msg%n"/>
+    <!-- 日志所在目录/home/logs -->
+    <springProperty scope="context" name="log.directory" source="log.directory" defaultValue="/Users/chenhua/IdeaProjects/hfproject/logs"/>
+    <!-- 日志所在目录/home/logs/applicationName -->
+    <springProperty scope="context" name="log.dir" source="log.dir"
+                    defaultValue="${log.directory}/${log.context.name}"/>
+</included>

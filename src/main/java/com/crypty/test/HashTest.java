@@ -1,7 +1,9 @@
 package com.crypty.test;
 
 import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.support.spring.data.redis.GenericFastJsonRedisSerializer;
 import com.google.common.hash.Hashing;
+import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
@@ -140,11 +142,26 @@ public class HashTest {
                 "    \"takeoutPhone\": \"\"\n" +
                 "}";
         Map map1 = JSON.parseObject(json1, Map.class);
-        Map map2 = JSON.parseObject(json2, Map.class);
-        map2.forEach((key, value) -> {
-            if(!map1.keySet().contains(key)){
-                System.out.println( key);
-            }
-        });
+        ShopDetailMsg msg = JSON.parseObject(json2, ShopDetailMsg.class);
+
+        GenericJackson2JsonRedisSerializer serializer = new GenericJackson2JsonRedisSerializer();
+        byte[] bytes = serializer.serialize( msg);
+
+        System.out.println(new String(bytes, StandardCharsets.UTF_8));
+
+        Object obj = serializer.deserialize( bytes);
+
+        System.out.println(obj);
+
+
+        GenericFastJsonRedisSerializer serializer1 = new GenericFastJsonRedisSerializer();
+        byte[] bytes1 = serializer1.serialize( msg);
+
+        System.out.println(new String(bytes1, StandardCharsets.UTF_8));
+
+        Object obj1 = serializer1.deserialize( bytes1);
+
+        System.out.println(obj1);
+
     }
 }

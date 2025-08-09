@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+
+    <conversionRule conversionWord="stack" converterClass="net.logstash.logback.stacktrace.ShortenedThrowableConverter" />
+
+    <appender name="APP_FILE_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 追加模式 -->
+        <append>true</append>
+        <prudent>true</prudent>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <!-- INFO以上的通过 -->
+            <level>${log.app.log.level}</level>
+        </filter>
+        <!-- 按大小以及时间归档 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!--日志归档文件名-->
+            <fileNamePattern>${log.dir}/${HOSTNAME}_application.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <!--单个日志文件最大，也会滚动-->
+            <maxFileSize>${log.maxSize}</maxFileSize>
+            <!--日志存活时间，大于这个时间的日志都将会删除-->
+            <maxHistory>${log.maxHistory}</maxHistory>
+        </rollingPolicy>
+
+        <encoder charset="UTF-8" class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <!-- jsonFactoryDecorator：解决中文转码的问题，不加这个的话中文会被编码成ASCII码输出 -->
+            <jsonFactoryDecorator class="net.logstash.logback.decorate.CharacterEscapesJsonFactoryDecorator">
+<!--                <escape>-->
+<!--                    <targetCharacterCode>10</targetCharacterCode>-->
+<!--                    <escapeSequence>\u2028</escapeSequence>-->
+<!--                </escape>-->
+            </jsonFactoryDecorator>
+            <providers class="net.logstash.logback.composite.loggingevent.LoggingEventJsonProviders">
+                <pattern>
+                    <pattern>
+                        {
+                            "datetime": "%d{yyyy-MM-dd HH:mm:ss.SSS}",
+                            "appName": "${log.context.name}",
+                            "env": "${spring.profiles.active}",
+                            "host": "${hostname}",
+                            "level": "%level",
+                            "pid": "${PID:-}",
+                            "thread": "%thread",
+                            "tid": "%X{trace_id}",
+                            "spanId":"%X{span_id}",
+                            "class": "%logger",
+                            "method": "%M",
+                            "line": "%line",
+                            "rt": "%X{rt}",
+                            "path": "%X{path}",
+                            "brandId": "%X{brandId}",
+                            "shopId": "%X{shopId}",
+                            "userId": "%X{userId}",
+                            "memberId": "%X{memberId}",
+                            "extKeyFir": "%X{extKeyFir}",
+                            "extKeySec": "%X{extKeySec}",
+                            "msg": "%msg%n"
+                        }
+                    </pattern>
+                </pattern>
+            </providers>
+        </encoder>
+    </appender>
+
+    <appender name="ERR_FILE_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 追加模式 -->
+        <append>true</append>
+        <prudent>true</prudent>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <!-- 只要ERROR日志 -->
+            <level>${log.error.log.level}</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <!-- 按大小以及时间归档 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!--日志归档文件名-->
+            <fileNamePattern>${log.dir}/${HOSTNAME}_error.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <!--单个日志文件最大，也会滚动-->
+            <maxFileSize>${log.maxSize}</maxFileSize>
+            <!--日志存活时间，大于这个时间的日志都将会删除-->
+            <maxHistory>${log.maxHistory}</maxHistory>
+        </rollingPolicy>
+
+        <encoder charset="UTF-8" class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <!-- jsonFactoryDecorator：解决中文转码的问题，不加这个的话中文会被编码成ASCII码输出 -->
+            <jsonFactoryDecorator class="net.logstash.logback.decorate.CharacterEscapesJsonFactoryDecorator">
+            </jsonFactoryDecorator>
+            <providers class="net.logstash.logback.composite.loggingevent.LoggingEventJsonProviders">
+                <pattern>
+                    <!--  "statckTrace": "%stack{100,16,2048,rootFirst,inlineHash}" -->
+                    <pattern>
+                        {
+                            "datetime": "%d{yyyy-MM-dd HH:mm:ss.SSS}",
+                            "appName": "${log.context.name}",
+                            "env": "${spring.profiles.active}",
+                            "host": "${hostname}",
+                            "level": "%level",
+                            "pid": "${PID:-}",
+                            "thread": "%thread",
+                            "tid": "%X{trace_id}",
+                            "spanId":"%X{span_id}",
+                            "class": "%logger",
+                            "method": "%M",
+                            "line": "%line",
+                            "path": "%X{path}",
+                            "brandId": "%X{brandId}",
+                            "shopId": "%X{shopId}",
+                            "userId": "%X{userId}",
+                            "memberId": "%X{memberId}",
+                            "extKeyFir": "%X{extKeyFir}",
+                            "extKeySec": "%X{extKeySec}",
+                            "msg": "%msg%n",
+                            "statckTrace":"%xEx"
+                        }
+                    </pattern>
+                </pattern>
+            </providers>
+        </encoder>
+    </appender>
+
+    <!-- 异步日志文件的配置 -->
+    <appender name="ASYNC_FILE_APP" class="ch.qos.logback.classic.AsyncAppender">
+        <queueSize>${log.async.queue.size}</queueSize>
+        <appender-ref ref="APP_FILE_APPENDER"/>
+    </appender>
+    <appender name="ASYNC_FILE_ERROR" class="ch.qos.logback.classic.AsyncAppender">
+        <queueSize>${log.async.queue.size}</queueSize>
+        <appender-ref ref="ERR_FILE_APPENDER"/>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- 日志文本格式 -->
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${log.console.pattern}</pattern>
+            <charset>${log.charset}</charset>
+        </encoder>
+    </appender>
+
+</included>

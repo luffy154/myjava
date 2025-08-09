@@ -1,0 +1,54 @@
+jetcache:
+  statIntervalMinutes: 15
+  areaInCacheName: false
+
+  local:
+    default:
+      type: caffeine
+      limit: 100
+      expireAfterWriteInMillis: 600000  # 本地缓存 TTL = 60 秒
+
+  remote:
+    default:
+      type: redis.lettuce
+      keyConvertor: fastjson2
+      valueEncoder: bean:jsonEncode
+      valueDecoder: bean:jsonDecode
+      ttlInMillis: 300000  # 远程缓存 TTL = 5 分钟
+      uri: redis://kT9!%40fx%40vK6sBLLU@10.10.0.5:6379/19?timeout=30000&idleTimeout=30000
+      readFrom: MASTER
+      mode: standalone
+
+      # 类型为redis
+#      type: redis
+#      poolConfig:
+#        minIdle: 5
+#        maxIdle: 20
+#        maxTotal: 50
+#      host: 10.10.0.5
+#      port: 6379
+#      password: kT9!@fx@vK6sBLLU
+#      database: 19
+spring:
+#  redis:
+#    host: 10.10.0.5
+#    port: 6379
+#    password: kT9!@fx@vK6sBLLU
+#    database: 8
+#    lettuce:
+#      pool:
+#        max-active: 100
+#        max-wait: 2s
+#        min-idle: 10
+#        max-idle: 50
+#        time-between-eviction-runs: 5m
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration
+      - org.springframework.boot.autoconfigure.r2dbc.R2dbcAutoConfiguration
+      - org.springframework.boot.autoconfigure.admin.SpringApplicationAdminJmxAutoConfiguration
+      - org.apache.dubbo.spring.boot.autoconfigure.DubboRelaxedBinding2AutoConfiguration
+      - org.apache.dubbo.spring.boot.autoconfigure.DubboAutoConfiguration
+      - org.apache.dubbo.spring.boot.autoconfigure.DubboRelaxedBindingAutoConfiguration
+      - org.apache.dubbo.spring.boot.autoconfigure.DubboListenerAutoConfiguration
